@@ -173,28 +173,51 @@ function Home() {
       <section id="pricing" className="border-t border-border/60 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Simple pricing</h2>
-            <p className="mt-3 text-muted-foreground">Cancel anytime. No setup fees.</p>
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Simple, transparent pricing</h2>
+            <p className="mt-3 text-muted-foreground">
+              Buy briefs when you need them. No subscriptions. No surprises.<br />
+              Credits valid for 6 months.
+            </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             <PriceCard
-              name="Starter"
-              price="$49"
-              tag="For brands testing Meta"
-              features={["1 Shopify store", "Weekly brief", "Audience + creative angles", "Email support"]}
+              name="Launch"
+              price="₦45,000"
+              tag="Start generating briefs today"
+              subTag="5 campaign briefs"
+              features={[
+                "5 campaign briefs",
+                "AI copy generation",
+                "Store intelligence targeting",
+                "PDF brief download",
+                "Valid for 6 months",
+              ]}
             />
             <PriceCard
               name="Growth"
-              price="$149"
-              tag="Most fashion brands pick this"
+              price="₦122,000"
+              tag="For brands running regular campaigns"
+              subTag="20 campaign briefs"
               highlight
-              features={["1 Shopify store", "Briefs on demand", "Hero products + hooks", "Budget split + exclusions", "Priority support"]}
+              features={[
+                "20 campaign briefs",
+                "Everything in Launch",
+                "Priority AI processing",
+                "Multi-product campaigns",
+                "Valid for 6 months",
+              ]}
             />
             <PriceCard
-              name="Scale"
-              price="$399"
-              tag="For multi-store operators"
-              features={["Up to 5 stores", "Unlimited briefs", "Custom audience rules", "Slack delivery", "Dedicated strategist"]}
+              name="Agency"
+              price="₦230,000"
+              tag="Unlimited briefs for 90 days"
+              subTag="90 days unlimited access"
+              features={[
+                "Unlimited briefs for 90 days",
+                "Everything in Growth",
+                "Early access to new features",
+                "Priority support",
+              ]}
             />
           </div>
         </div>
@@ -231,40 +254,44 @@ function PriceCard({
   name,
   price,
   tag,
+  subTag,
   features,
   highlight,
 }: {
   name: string;
   price: string;
   tag: string;
+  subTag: string;
   features: string[];
   highlight?: boolean;
 }) {
   return (
     <div
       className={
-        "relative rounded-xl border bg-card/40 p-6 " +
+        "relative rounded-2xl border bg-card/40 p-6 " +
         (highlight
           ? "border-primary/60 shadow-[var(--shadow-glow)]"
-          : "border-border/60")
+          : "border-border-subtle bg-surface")
       }
     >
       {highlight && (
-        <span className="absolute -top-2.5 left-6 rounded-full bg-[image:var(--gradient-primary)] px-2.5 py-0.5 text-xs font-medium text-primary-foreground">
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[image:var(--gradient-primary)] px-3 py-1 text-xs font-semibold text-primary-foreground">
           Most popular
         </span>
       )}
-      <h3 className="text-sm font-medium text-muted-foreground">{name}</h3>
-      <div className="mt-3 flex items-baseline gap-1">
-        <span className="text-4xl font-semibold tracking-tight">{price}</span>
-        <span className="text-sm text-muted-foreground">/mo</span>
+      <h3 className="text-lg font-bold text-white">{name}</h3>
+      <p className="mt-1 text-xs text-white/40">{tag}</p>
+      
+      <div className="mt-6">
+        <div className="text-3xl font-bold text-white">{price}</div>
+        <div className="mt-1 text-xs text-white/40">{subTag}</div>
       </div>
-      <p className="mt-2 text-sm text-muted-foreground">{tag}</p>
-      <ul className="mt-6 space-y-2.5 text-sm">
+
+      <ul className="mt-8 space-y-2.5 text-sm flex-1">
         {features.map((f) => (
-          <li key={f} className="flex gap-2">
-            <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-            <span className="text-foreground/90">{f}</span>
+          <li key={f} className="flex gap-2 text-white/60">
+            <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-primary" />
+            <span>{f}</span>
           </li>
         ))}
       </ul>
@@ -273,13 +300,13 @@ function PriceCard({
         target="_blank"
         rel="noopener noreferrer"
         className={
-          "mt-6 inline-flex h-10 w-full items-center justify-center rounded-md text-sm font-medium transition " +
+          "mt-8 inline-flex h-11 w-full items-center justify-center rounded-xl text-sm font-semibold transition " +
           (highlight
             ? "bg-[image:var(--gradient-primary)] text-primary-foreground hover:opacity-90"
-            : "border border-border/60 bg-card/60 text-foreground hover:border-primary/40")
+            : "bg-white/10 hover:bg-white/15 text-white")
         }
       >
-        Start with {name}
+        Get Started
       </a>
     </div>
   );
