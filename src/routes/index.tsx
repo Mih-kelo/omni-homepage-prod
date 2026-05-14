@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Check, Plug, Sparkles, Target } from "lucide-react";
-
-const APP_URL = "https://app.omnitarget.co";
+import { Check, ArrowRight, Zap, Target, Sparkles, BarChart3, Users, Rocket } from "lucide-react";
+import { LandingHeader } from "../components/LandingHeader";
+import { LandingFooter } from "../components/LandingFooter";
+import { BriefPreview } from "../components/BriefPreview";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,299 +16,202 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-function CTA({ children = "Open Omni-target" }: { children?: React.ReactNode }) {
-  return (
-    <a
-      href={APP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group inline-flex h-11 items-center gap-2 rounded-md bg-[image:var(--gradient-primary)] px-5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
-    >
-      {children}
-      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-    </a>
-  );
-}
-
 function Home() {
   return (
-    <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 -top-40 h-[600px]"
-          style={{ background: "var(--gradient-hero)" }}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-            maskImage: "radial-gradient(ellipse at top, black 30%, transparent 70%)",
-          }}
-        />
-        <div className="relative mx-auto max-w-4xl px-6 pb-24 pt-20 text-center md:pt-28">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Shopify store intelligence
-          </span>
-          <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight md:text-6xl">
-            Know exactly what to run on Meta.{" "}
-            <span className="bg-[image:var(--gradient-primary)] bg-clip-text text-transparent">
-              Before you spend.
-            </span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
-            Omni-target reads your Shopify store and tells you exactly what to put in Meta Ads
-            Manager to get sales. Like having a media buyer who knows your store inside out.
-          </p>
-          <div className="mt-9 flex items-center justify-center gap-4">
-            <CTA />
-            <a href="#how" className="text-sm text-muted-foreground hover:text-foreground">
-              See how it works →
-            </a>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-background selection:bg-indigo-500/30">
+      <LandingHeader />
 
-      {/* How it works */}
-      <section id="how" className="border-t border-border/60 py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">How it works</h2>
-            <p className="mt-3 text-muted-foreground">
-              Three steps from Shopify connect to a brief you can paste into Meta.
+      <main>
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 overflow-hidden">
+          <div className="hero-glow top-0 left-1/2 -translate-x-1/2" />
+          <div className="grid-background absolute inset-0 -z-10" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6 animate-fade-in-up">
+              <Zap className="w-3 h-3 fill-indigo-400" />
+              <span>New: Shopify Insight Engine 2.0</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up-delay-1 max-w-4xl">
+              Know exactly what to run on Meta. <span className="text-gradient">Before you spend.</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-foreground/60 mb-10 max-w-2xl animate-fade-in-up-delay-2">
+              OmniTarget reads your Shopify store data and generates a perfect Meta Ads brief: audiences, creatives, and budget split. Built for high-growth DTC brands.
             </p>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {[
-              { n: "01", icon: Plug, title: "Connect Shopify", body: "One-click install. Read-only access to products, orders, customers, and collections." },
-              { n: "02", icon: Sparkles, title: "We read your store", body: "We analyse your bestsellers, repeat buyers, price points, and seasonality patterns." },
-              { n: "03", icon: Target, title: "Get a Meta brief", body: "Audiences, creative angles, hero products, hooks, and budget split — ready to launch." },
-            ].map(({ n, icon: Icon, title, body }) => (
-              <div key={n} className="group relative rounded-xl border border-border/60 bg-card/40 p-6 transition hover:border-primary/40">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-muted-foreground">{n}</span>
-                  <Icon className="h-4 w-4 text-primary" />
-                </div>
-                <h3 className="mt-6 text-lg font-medium">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* What you get */}
-      <section className="border-t border-border/60 py-20">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">What you get</h2>
-            <p className="mt-3 text-muted-foreground">
-              A complete Meta Ads brief, written for your store. No fluff, no generic playbooks —
-              specific targeting and creative direction grounded in your real data.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm">
+            <div className="flex flex-col sm:flex-row gap-4 mb-16 animate-fade-in-up-delay-3">
+              <a 
+                href="https://app.omnitarget.co/signup"
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-lg font-bold text-white shadow-glow hover:scale-105 transition-all flex items-center gap-2"
+              >
+                Get Started for Free
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              <a 
+                href="#how-it-works"
+                className="px-8 py-4 rounded-full bg-surface-raised border border-border-default text-lg font-bold hover:bg-surface-overlay transition-all"
+              >
+                See How it Works
+              </a>
+            </div>
+
+            <div className="w-full flex justify-center px-4 animate-fade-in-up-delay-4">
+              <BriefPreview />
+            </div>
+          </div>
+        </section>
+
+        {/* Features Grid */}
+        <section id="features" className="py-24 bg-surface-raised/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">The ultimate co-pilot for media buyers</h2>
+              <p className="text-foreground/50 max-w-2xl mx-auto">
+                Stop guessing and start scaling with data-driven insights pulled directly from your Shopify ecosystem.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
               {[
-                "Audiences that match your actual buyer profile",
-                "Creative angles ranked by likelihood to convert",
-                "Hero products to feature this week",
-                "Copy hooks pulled from your reviews and product data",
-                "Budget split across prospecting and retargeting",
-              ].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                  <span className="text-foreground/90">{item}</span>
-                </li>
+                {
+                  title: "Smart Audience Discovery",
+                  description: "We analyze your actual customer segments to find the most profitable interests and lookalikes.",
+                  icon: Users
+                },
+                {
+                  title: "Creative Direction",
+                  description: "Know which product angles will convert based on purchase history and seasonal trends.",
+                  icon: Sparkles
+                },
+                {
+                  title: "Predictive Budgeting",
+                  description: "Get the exact budget split recommended for prospecting vs retargeting campaigns.",
+                  icon: BarChart3
+                }
+              ].map((feature, i) => (
+                <div key={i} className="glass p-8 rounded-2xl border-white/5 hover:border-indigo-500/30 transition-all group">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
+                    <feature.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-foreground/50 text-sm leading-relaxed">{feature.description}</p>
+                </div>
               ))}
-            </ul>
-          </div>
-
-          {/* Mock brief panel */}
-          <div className="rounded-xl border border-border/60 bg-card/60 p-1 shadow-[var(--shadow-elegant)]">
-            <div className="flex items-center gap-2 border-b border-border/60 px-4 py-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-              <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-              <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-              <span className="ml-2 font-mono text-xs text-muted-foreground">brief.md</span>
-            </div>
-            <div className="space-y-4 p-5 font-mono text-xs leading-relaxed">
-              <Row label="audience" value="Women 28–44 · linen, slow fashion, capsule" />
-              <Row label="hero" value="Oversized poplin shirt · €98" />
-              <Row label="angle_1" value="“The shirt that replaces five”" />
-              <Row label="angle_2" value="Founder-led: how it's cut, why it lasts" />
-              <Row label="hook" value="Reviewers mention ‘never takes it off’ 41×" />
-              <Row label="budget" value="70% prospecting / 30% retargeting" />
-              <Row label="exclude" value="Purchasers last 30d, sale-only buyers" />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Who it's for */}
-      <section className="border-t border-border/60 py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Who it's for</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Built specifically for fashion and lifestyle brands running on Shopify. We don't try to
-            be everything to everyone.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {["Fashion & lifestyle", "Shopify-native", "$10k–$500k/mo", "DTC operators", "Brand-led teams"].map((chip) => (
-              <span key={chip} className="rounded-full border border-border/60 bg-card/40 px-3 py-1 text-sm text-foreground/80">
-                {chip}
-              </span>
-            ))}
+        {/* How it Works */}
+        <section id="how-it-works" className="py-24 relative overflow-hidden">
+          <div className="hero-glow bottom-0 right-0 opacity-10" />
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-16">
+              <div className="flex-1">
+                <h2 className="text-4xl font-bold mb-8">From data to ads in under 60 seconds</h2>
+                <div className="space-y-8">
+                  {[
+                    { step: 1, title: "Connect Shopify", text: "One-click secure integration. We read your orders and products in real-time." },
+                    { step: 2, title: "AI Analysis", text: "Our Insight Engine identifies patterns, bestsellers, and high-LTV customer cohorts." },
+                    { step: 3, title: "Export Brief", text: "Copy-paste your optimized campaign settings directly into Meta Ads Manager." }
+                  ].map((s) => (
+                    <div key={s.step} className="flex gap-6">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold shadow-glow">
+                        {s.step}
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold mb-2">{s.title}</h4>
+                        <p className="text-foreground/50">{s.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex-1 relative">
+                <div className="aspect-square bg-gradient-to-br from-indigo-500/20 to-purple-600/20 rounded-3xl border border-white/10 p-1">
+                  <div className="w-full h-full glass-raised rounded-2xl flex items-center justify-center">
+                    <Rocket className="w-24 h-24 text-indigo-500 animate-pulse" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="mx-auto mt-8 max-w-xl text-sm text-muted-foreground">
-            Not for you if you sell B2B, run on a non-Shopify stack, or want a tool that pushes a
-            “Buy Now” button on its own.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="border-t border-border/60 py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Simple, transparent pricing</h2>
-            <p className="mt-3 text-muted-foreground">
-              Buy briefs when you need them. No subscriptions. No surprises.<br />
-              Credits valid for 6 months.
+        {/* Pricing */}
+        <section id="pricing" className="py-24 bg-surface-raised">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">Simple, transparent pricing</h2>
+              <p className="text-foreground/50">
+                Buy briefs when you need them. No subscriptions. No surprises.<br />
+                Credits valid for 6 months.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {[
+                { name: "Launch", price: "₦45,000", subTag: "5 campaign briefs", features: ["5 campaign briefs", "AI copy generation", "Store intelligence targeting", "PDF brief download", "Valid for 6 months"] },
+                { name: "Growth", price: "₦122,000", subTag: "20 campaign briefs", popular: true, features: ["20 campaign briefs", "Everything in Launch", "Priority AI processing", "Multi-product campaigns", "Valid for 6 months"] },
+                { name: "Agency", price: "₦230,000", subTag: "90 days unlimited access", features: ["Unlimited briefs for 90 days", "Everything in Growth", "Early access to new features", "Priority support"] }
+              ].map((plan, i) => (
+                <div key={i} className={`relative glass p-8 rounded-3xl border-white/5 flex flex-col ${plan.popular ? 'border-indigo-500/50 shadow-glow ring-2 ring-indigo-500/20' : ''}`}>
+                  {plan.popular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-widest">
+                      Most Popular
+                    </div>
+                  )}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+                    <div className="mt-1 flex items-baseline gap-1">
+                      <span className="text-4xl font-extrabold">{plan.price}</span>
+                    </div>
+                    <div className="text-sm text-foreground/40 mt-1">{plan.subTag}</div>
+                  </div>
+                  <ul className="space-y-4 mb-8 flex-1">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-center gap-3 text-sm text-foreground/70">
+                        <Check className="w-4 h-4 text-indigo-400" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a 
+                    href="https://app.omnitarget.co/signup"
+                    className={`w-full py-3 rounded-xl text-center font-bold transition-all inline-block ${plan.popular ? 'bg-indigo-600 hover:bg-indigo-700 text-white' : 'bg-surface-overlay hover:bg-white/10 border border-white/10'}`}
+                  >
+                    Get Started
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="hero-glow top-0 left-1/2 -translate-x-1/2 opacity-20" />
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to transform your Meta Ads performance?</h2>
+            <p className="text-xl text-foreground/60 mb-10">
+              Join 500+ Shopify brands using OmniTarget to scale their media buying.
+            </p>
+            <a 
+              href="https://app.omnitarget.co/signup"
+              className="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-white text-black font-bold text-lg hover:scale-105 transition-all"
+            >
+              Get Started for Free
+              <ArrowRight className="w-5 h-5" />
+            </a>
+            <p className="mt-6 text-sm text-foreground/30">
+              No credit card required. Connect your store in 30 seconds.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            <PriceCard
-              name="Launch"
-              price="₦45,000"
-              tag="Start generating briefs today"
-              subTag="5 campaign briefs"
-              features={[
-                "5 campaign briefs",
-                "AI copy generation",
-                "Store intelligence targeting",
-                "PDF brief download",
-                "Valid for 6 months",
-              ]}
-            />
-            <PriceCard
-              name="Growth"
-              price="₦122,000"
-              tag="For brands running regular campaigns"
-              subTag="20 campaign briefs"
-              highlight
-              features={[
-                "20 campaign briefs",
-                "Everything in Launch",
-                "Priority AI processing",
-                "Multi-product campaigns",
-                "Valid for 6 months",
-              ]}
-            />
-            <PriceCard
-              name="Agency"
-              price="₦230,000"
-              tag="Unlimited briefs for 90 days"
-              subTag="90 days unlimited access"
-              features={[
-                "Unlimited briefs for 90 days",
-                "Everything in Growth",
-                "Early access to new features",
-                "Priority support",
-              ]}
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Closing */}
-      <section className="border-t border-border/60 py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-            Stop guessing what to launch.
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Connect your store and get your first brief in minutes.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <CTA>Get your first brief</CTA>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid grid-cols-[88px_1fr] gap-3">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="text-foreground/90">{value}</span>
-    </div>
-  );
-}
-
-function PriceCard({
-  name,
-  price,
-  tag,
-  subTag,
-  features,
-  highlight,
-}: {
-  name: string;
-  price: string;
-  tag: string;
-  subTag: string;
-  features: string[];
-  highlight?: boolean;
-}) {
-  return (
-    <div
-      className={
-        "relative rounded-2xl border bg-card/40 p-6 " +
-        (highlight
-          ? "border-primary/60 shadow-[var(--shadow-glow)]"
-          : "border-border-subtle bg-surface")
-      }
-    >
-      {highlight && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[image:var(--gradient-primary)] px-3 py-1 text-xs font-semibold text-primary-foreground">
-          Most popular
-        </span>
-      )}
-      <h3 className="text-lg font-bold text-white">{name}</h3>
-      <p className="mt-1 text-xs text-white/40">{tag}</p>
-      
-      <div className="mt-6">
-        <div className="text-3xl font-bold text-white">{price}</div>
-        <div className="mt-1 text-xs text-white/40">{subTag}</div>
-      </div>
-
-      <ul className="mt-8 space-y-2.5 text-sm flex-1">
-        {features.map((f) => (
-          <li key={f} className="flex gap-2 text-white/60">
-            <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-primary" />
-            <span>{f}</span>
-          </li>
-        ))}
-      </ul>
-      <a
-        href={APP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={
-          "mt-8 inline-flex h-11 w-full items-center justify-center rounded-xl text-sm font-semibold transition " +
-          (highlight
-            ? "bg-[image:var(--gradient-primary)] text-primary-foreground hover:opacity-90"
-            : "bg-white/10 hover:bg-white/15 text-white")
-        }
-      >
-        Get Started
-      </a>
+      <LandingFooter />
     </div>
   );
 }
