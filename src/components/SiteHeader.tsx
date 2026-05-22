@@ -9,7 +9,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
           <LogoIcon className="w-5 h-5 text-[#8B5CF6]" />
-          omni target
+          Omni Target
         </Link>
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
           <Link to="/" hash="how" className="hover:text-foreground">How it works</Link>

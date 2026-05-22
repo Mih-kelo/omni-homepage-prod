@@ -7,7 +7,7 @@ export function LandingHeader() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <LogoIcon className="w-8 h-8 text-[#8B5CF6]" />
-          <span className="font-bold text-xl tracking-tight">omni target</span>
+          <span className="font-bold text-xl tracking-tight">Omni Target</span>
         </div>
 
         <nav className="hidden md:flex items-center gap-8">

@@ -5,10 +5,10 @@ import { SiteFooter } from "../components/SiteFooter";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — omni target" },
-      { name: "description", content: "How omni target collects, uses, and protects your Shopify store data." },
-      { property: "og:title", content: "Privacy Policy — omni target" },
-      { property: "og:description", content: "How omni target collects, uses, and protects your Shopify store data." },
+      { title: "Privacy Policy — Omni Target" },
+      { name: "description", content: "How Omni Target collects, uses, and protects your Shopify store data." },
+      { property: "og:title", content: "Privacy Policy — Omni Target" },
+      { property: "og:description", content: "How Omni Target collects, uses, and protects your Shopify store data." },
     ],
   }),
   component: PrivacyPage,
@@ -27,7 +27,7 @@ function PrivacyPage() {
           <div className="prose prose-invert mt-10 space-y-8 text-foreground/90">
             <Section title="What we collect">
               <p>
-                When you connect your Shopify store, omni target reads product, order, customer, and
+                When you connect your Shopify store, Omni Target reads product, order, customer, and
                 collection data through Shopify's official API. We also collect basic account
                 information (email, store URL) and product usage events.
               </p>

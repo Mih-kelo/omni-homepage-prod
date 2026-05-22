@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div>
           <Link to="/" className="flex items-center gap-2 text-sm font-semibold">
             <LogoIcon className="w-5 h-5 text-[#8B5CF6]" />
-            omni target
+            Omni Target
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             Shopify store intelligence for fashion and lifestyle brands.
@@ -34,7 +34,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border/60">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} omni target. All rights reserved.
+          © {new Date().getFullYear()} Omni Target. All rights reserved.
         </div>
       </div>
     </footer>

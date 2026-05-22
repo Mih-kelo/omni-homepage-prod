@@ -8,7 +8,7 @@ export function LandingFooter() {
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <LogoIcon className="w-6 h-6 text-[#8B5CF6]" />
-              <span className="font-bold text-lg">omni target</span>
+              <span className="font-bold text-lg">Omni Target</span>
             </div>
             <p className="text-sm text-foreground/50 max-w-xs">
               Know exactly what to run on Meta. Before you spend. 
@@ -33,7 +33,7 @@ export function LandingFooter() {
         </div>
         <div className="mt-12 pt-8 border-t border-border/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-foreground/40">
-            © {new Date().getFullYear()} omni target. All rights reserved.
+            © {new Date().getFullYear()} Omni Target. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-foreground/40">
             <span>Built for the next generation of Shopify entrepreneurs.</span>
