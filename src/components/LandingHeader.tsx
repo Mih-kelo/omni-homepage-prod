@@ -1,14 +1,13 @@
 import { ArrowRight } from "lucide-react";
+import { LogoIcon } from "./LogoIcon";
 
 export function LandingHeader() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
-            <div className="w-4 h-4 bg-white rounded-sm rotate-45" />
-          </div>
-          <span className="font-bold text-xl tracking-tight">OmniTarget</span>
+          <LogoIcon className="w-8 h-8 text-[#8B5CF6]" />
+          <span className="font-bold text-xl tracking-tight">omni target</span>
         </div>
 
         <nav className="hidden md:flex items-center gap-8">

@@ -1,3 +1,5 @@
+import { LogoIcon } from "./LogoIcon";
+
 export function LandingFooter() {
   return (
     <footer className="bg-surface border-t border-border-subtle py-12">
@@ -5,10 +7,8 @@ export function LandingFooter() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                <div className="w-3 h-3 bg-white rounded-sm rotate-45" />
-              </div>
-              <span className="font-bold text-lg">OmniTarget</span>
+              <LogoIcon className="w-6 h-6 text-[#8B5CF6]" />
+              <span className="font-bold text-lg">omni target</span>
             </div>
             <p className="text-sm text-foreground/50 max-w-xs">
               Know exactly what to run on Meta. Before you spend. 
@@ -33,7 +33,7 @@ export function LandingFooter() {
         </div>
         <div className="mt-12 pt-8 border-t border-border/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-foreground/40">
-            © {new Date().getFullYear()} OmniTarget. All rights reserved.
+            © {new Date().getFullYear()} omni target. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-foreground/40">
             <span>Built for the next generation of Shopify entrepreneurs.</span>

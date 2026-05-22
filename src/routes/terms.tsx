@@ -5,10 +5,10 @@ import { SiteFooter } from "../components/SiteFooter";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — Omni-target" },
-      { name: "description", content: "The terms that govern your use of Omni-target." },
-      { property: "og:title", content: "Terms of Service — Omni-target" },
-      { property: "og:description", content: "The terms that govern your use of Omni-target." },
+      { title: "Terms of Service — omni target" },
+      { name: "description", content: "The terms that govern your use of omni target." },
+      { property: "og:title", content: "Terms of Service — omni target" },
+      { property: "og:description", content: "The terms that govern your use of omni target." },
     ],
   }),
   component: TermsPage,
@@ -26,7 +26,7 @@ function TermsPage() {
           <div className="mt-10 space-y-8 text-foreground/90">
             <Section title="The service">
               <p>
-                Omni-target reads data from your connected Shopify store and produces Meta Ads briefs.
+                omni target reads data from your connected Shopify store and produces Meta Ads briefs.
                 We do not place ads, charge media spend, or operate your ad accounts on your behalf.
               </p>
             </Section>
@@ -41,7 +41,7 @@ function TermsPage() {
 
             <Section title="Acceptable use">
               <p>
-                Don't use Omni-target to violate Shopify's or Meta's terms, infringe third-party
+                Don't use omni target to violate Shopify's or Meta's terms, infringe third-party
                 rights, or attempt to reverse-engineer our service. We may suspend accounts that abuse
                 the platform.
               </p>

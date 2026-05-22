@@ -7,9 +7,9 @@ import { BriefPreview } from "../components/BriefPreview";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Omni-target — Know what to run on Meta. Before you spend." },
-      { name: "description", content: "Omni-target reads your Shopify store and gives you a Meta Ads brief: audiences, creative angles, products, and budget split. Built for fashion and lifestyle brands." },
-      { property: "og:title", content: "Omni-target — Shopify store intelligence for Meta Ads" },
+      { title: "omni target — Know what to run on Meta. Before you spend." },
+      { name: "description", content: "omni target reads your Shopify store and gives you a Meta Ads brief: audiences, creative angles, products, and budget split. Built for fashion and lifestyle brands." },
+      { property: "og:title", content: "omni target — Shopify store intelligence for Meta Ads" },
       { property: "og:description", content: "Like having a media buyer who knows your store inside out." },
     ],
   }),
@@ -38,7 +38,7 @@ function Home() {
             </h1>
             
             <p className="text-lg md:text-xl text-foreground/60 mb-10 max-w-2xl animate-fade-in-up-delay-2">
-              OmniTarget reads your Shopify store data and generates a perfect Meta Ads brief: audiences, creatives, and budget split. Built for high-growth DTC brands.
+              omni target reads your Shopify store data and generates a perfect Meta Ads brief: audiences, creatives, and budget split. Built for high-growth DTC brands.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-16 animate-fade-in-up-delay-3">
@@ -195,7 +195,7 @@ function Home() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to transform your Meta Ads performance?</h2>
             <p className="text-xl text-foreground/60 mb-10">
-              Join 500+ Shopify brands using OmniTarget to scale their media buying.
+              Join 500+ Shopify brands using omni target to scale their media buying.
             </p>
             <a 
               href="https://app.omnitarget.co/signup"

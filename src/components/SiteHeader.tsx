@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { LogoIcon } from "./LogoIcon";
 
 const APP_URL = "https://app.omnitarget.co";
 
@@ -7,8 +8,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
-          <span className="inline-block h-5 w-5 rounded-md bg-[image:var(--gradient-primary)] shadow-[var(--shadow-glow)]" />
-          Omni-target
+          <LogoIcon className="w-5 h-5 text-[#8B5CF6]" />
+          omni target
         </Link>
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
           <Link to="/" hash="how" className="hover:text-foreground">How it works</Link>

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { LogoIcon } from "./LogoIcon";
 
 const APP_URL = "https://app.omnitarget.co";
 
@@ -8,8 +9,8 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-3">
         <div>
           <Link to="/" className="flex items-center gap-2 text-sm font-semibold">
-            <span className="inline-block h-5 w-5 rounded-md bg-[image:var(--gradient-primary)]" />
-            Omni-target
+            <LogoIcon className="w-5 h-5 text-[#8B5CF6]" />
+            omni target
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             Shopify store intelligence for fashion and lifestyle brands.
@@ -33,7 +34,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border/60">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Omni-target. All rights reserved.
+          © {new Date().getFullYear()} omni target. All rights reserved.
         </div>
       </div>
     </footer>
