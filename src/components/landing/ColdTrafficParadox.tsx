@@ -83,7 +83,7 @@ export function ColdTrafficParadox() {
               </div>
             </dl>
             <div className="mt-8 inline-block rounded-md border border-[var(--primary)]/40 bg-[var(--primary)]/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--primary-light)]">
-              Acquisition engine
+              Acquisition engine.
             </div>
           </article>
         </div>
