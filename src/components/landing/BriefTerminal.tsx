@@ -1,6 +1,6 @@
 const rows = [
-  { k: "store", v: "maison-rive.com" },
-  { k: "gateway", v: "Silk Camisole — Ivory", highlight: true },
+  { k: "store", v: "Pilot Brand (NDA)" },
+  { k: "gateway", v: "Product B", highlight: true },
   { k: "format", v: "UGC carousel, 4 frames" },
   { k: "hook_1", v: "\"The one piece that quietly outsells everything.\"" },
   { k: "optimize", v: "Purchases · 7d click" },
@@ -29,10 +29,13 @@ export function BriefTerminal() {
         {rows.map((r) => (
           <div
             key={r.k}
-            className={`grid grid-cols-[110px_1fr] items-start gap-3 rounded-md px-2 py-1 ${
-              r.highlight ? "gold-pulse bg-[rgba(240,198,116,0.04)]" : ""
+            className={`relative grid grid-cols-[110px_1fr] items-start gap-3 px-3 py-1.5 ${
+              r.highlight ? "bg-[rgba(240,198,116,0.03)]" : ""
             }`}
           >
+            {r.highlight && (
+              <div className="absolute left-0 top-0 h-full w-[2px] bg-[var(--gold-light)] shadow-[0_0_10px_rgba(240,198,116,0.4)] animate-pulse" />
+            )}
             <span
               className={
                 r.highlight

@@ -35,19 +35,17 @@ export function Hero() {
               letterSpacing: "-0.02em",
             }}
           >
-            Know exactly what to run on Meta.
+            Pre-Spend Intelligence for Shopify
             <br />
-            <span className="text-[var(--primary-mid)]">Before you spend.</span>
+            <span className="text-[var(--primary-mid)]">Fashion Brands.</span>
           </h1>
 
           <p className="mt-7 max-w-[480px] text-[18px] leading-[1.55] text-white/[0.48]">
-            Omni Target reads your Shopify store and generates a complete,
-            data-backed Meta Ads brief. Audiences, hero products, budget —
-            derived from your real store data. Not guesswork.
+            Shopify knows what sells. Meta knows who buys. They don't talk pre-spend. Omni Target bridges that gap — turning real store data into a ready-to-launch Meta Ads brief in three minutes.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-7">
-            <a href="#open" className="cta-premium group">
+            <a href="https://app.omnitarget.co/" className="cta-premium group">
               <span className="cta-premium-inner">
                 <span className="cta-premium-label">Open Omni Target</span>
                 <span aria-hidden className="cta-premium-arrow">

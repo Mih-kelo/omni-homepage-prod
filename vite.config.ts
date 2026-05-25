@@ -11,9 +11,9 @@ export default defineConfig({
     tanstackStart(),
     viteReact(),
   ],
-  ssr: {
-    noExternal: true,
-  },
+  // ssr: {
+  //   noExternal: true,
+  // },
   resolve: {
     alias: {
       '@': '/src',

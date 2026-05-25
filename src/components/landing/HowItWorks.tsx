@@ -2,17 +2,17 @@ const steps = [
   {
     n: "01",
     t: "Connect Shopify",
-    d: "One-click OAuth. Read-only access. We never touch your storefront or write to your data.",
+    d: "One-click OAuth. Read-only access to orders, products, customers, and collections.",
   },
   {
     n: "02",
-    t: "We read your store",
-    d: "AI identifies your gateway products, audience patterns, and revenue signals from real order history.",
+    t: "Intelligence engine reads your store",
+    d: "Identifies gateway products dynamically, calculates first-time buyer ratios, maps repeat purchase patterns — all relative to your store's own baseline.",
   },
   {
     n: "03",
-    t: "Get your Meta brief",
-    d: "Audiences, creative angles, hooks, budget. Ready to launch — or hand to your media buyer.",
+    t: "Get your complete Meta brief",
+    d: "Gateway product, audience profile, creative format prescription, behavior-derived hooks, correct optimization event, and dynamic budget — exported as a branded PDF.",
   },
 ];
 

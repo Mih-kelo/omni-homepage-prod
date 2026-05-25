@@ -1,27 +1,36 @@
 const plans = [
   {
-    name: "Signal",
-    price: "$29",
-    period: "/ month",
-    desc: "One Shopify store. A monthly brief refresh. For founders running ads themselves.",
-    cta: "Start with Signal",
+    name: "Single Brief",
+    price: "$19",
+    period: "",
+    desc: "Pay as you go · zero commitment. Full intelligence brief for one product.",
+    cta: "Generate Brief",
     featured: false,
   },
   {
-    name: "Growth",
+    name: "Starter Bundle",
     price: "$49",
-    period: "/ month",
-    desc: "Weekly briefs, gateway tracking, and creative angle library. For brands scaling past $50k/mo.",
-    cta: "Choose Growth",
+    period: "",
+    desc: "3 briefs · saves $8. Test multiple products or hooks without a subscription.",
+    cta: "Get Starter Bundle",
     featured: true,
   },
   {
-    name: "Studio",
-    price: "$199",
-    period: "/ month",
-    desc: "Multi-store, agency seats, and white-label briefs. For media buyers managing fashion clients.",
-    cta: "Talk to us",
+    name: "Growth Bundle",
+    price: "$99",
+    period: "",
+    desc: "7 briefs · saves $34. For brands running multiple tests and scaling.",
+    cta: "Get Growth Bundle",
     featured: false,
+  },
+  {
+    name: "Scale Subscription",
+    price: "$79",
+    period: "/ month",
+    desc: "Unlimited briefs · unlocks after 1st use. Full access for high-volume stores.",
+    cta: "Subscribe Now",
+    featured: false,
+    dashed: true,
   },
 ];
 
@@ -32,30 +41,30 @@ export function Pricing() {
       <div className="relative mx-auto max-w-[1280px] px-6 py-28 lg:px-12 lg:py-36">
         <div className="mb-16 max-w-[700px]">
           <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--primary-light)]">
-            Simple pricing
+            Business Model
           </div>
           <h2
             className="font-serif font-black"
             style={{ fontSize: "clamp(34px, 4.4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.015em" }}
           >
-            Priced by depth,
+            Credit-first acquisition.
             <br />
-            <span className="text-[var(--primary-mid)]">not by seats.</span>
+            <span className="text-[var(--primary-mid)]">Earned subscriptions.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:items-start">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:items-start">
           {plans.map((p) => (
             <div
               key={p.name}
-              className={`flex flex-col rounded-2xl border p-8 transition-transform ${
+              className={`flex flex-col rounded-2xl p-8 transition-transform ${
                 p.featured
-                  ? "md:-translate-y-2"
-                  : ""
+                  ? "lg:-translate-y-2 border"
+                  : p.dashed ? "border border-dashed opacity-85" : "border"
               }`}
               style={{
                 borderColor: p.featured ? "var(--primary)" : "var(--border)",
-                background: p.featured ? "rgba(109,40,217,0.06)" : "transparent",
+                background: p.featured ? "rgba(109,40,217,0.06)" : p.dashed ? "rgba(109,40,217,0.03)" : "transparent",
               }}
             >
               <div className="flex items-center justify-between">
@@ -79,7 +88,7 @@ export function Pricing() {
                 {p.desc}
               </p>
               <a
-                href="#open"
+                href="https://app.omnitarget.co/"
                 className={`mt-10 inline-flex items-center justify-center rounded-lg px-5 py-3 text-[15px] font-medium transition-colors ${
                   p.featured
                     ? "bg-[var(--primary)] text-white hover:bg-[#7c33ee]"
@@ -91,7 +100,19 @@ export function Pricing() {
             </div>
           ))}
         </div>
+
+        <div className="mt-10 flex justify-center">
+          <div className="inline-flex items-center gap-3 rounded-full border border-white/5 bg-white/[0.02] px-5 py-2.5 text-[13px] text-white/60">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--primary-light)]">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            <span>
+              Need more? Add extra briefs to any plan for <strong className="font-medium text-white">$9 / credit</strong>.
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+

@@ -18,14 +18,13 @@ export function ColdTrafficParadox() {
         <div className="relative mt-16 grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1fr_auto_1fr] md:gap-10">
           {/* Bestseller */}
           <article
-            className="rounded-2xl border bg-[#0c0c18] p-8"
-            style={{ borderLeft: "3px solid #a14545", borderColor: "rgba(255,255,255,0.06)", borderLeftColor: "#a14545" }}
+            className="rounded-2xl border border-white/5 bg-[#0c0c18] p-8"
           >
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
               Organic bestseller
             </div>
             <div className="mt-6 font-serif text-[28px] leading-tight text-white">
-              The Heritage Wool Coat
+              Product A
             </div>
             <dl className="mt-8 space-y-3 font-mono text-[13px]">
               <div className="flex justify-between border-b border-white/5 pb-2">
@@ -41,8 +40,11 @@ export function ColdTrafficParadox() {
                 <dd className="text-white/80">0.6x</dd>
               </div>
             </dl>
-            <div className="mt-8 inline-block rounded-md border border-[#a14545]/40 bg-[#a14545]/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-[#e08a8a]">
-              Retention piece
+            <div className="mt-8 flex items-center gap-3">
+              <div className="h-3.5 w-[2px] rounded-full bg-[#e08a8a] shadow-[0_0_8px_rgba(224,138,138,0.6)]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#e08a8a]">
+                Retention piece
+              </span>
             </div>
           </article>
 
@@ -59,14 +61,13 @@ export function ColdTrafficParadox() {
             style={{
               background: "rgba(109,40,217,0.08)",
               borderColor: "rgba(109,40,217,0.25)",
-              borderLeft: "3px solid var(--primary)",
             }}
           >
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--primary-light)]">
               Gateway product
             </div>
             <div className="mt-6 font-serif text-[28px] leading-tight text-white">
-              Silk Camisole — Ivory
+              Product B
             </div>
             <dl className="mt-8 space-y-3 font-mono text-[13px]">
               <div className="flex justify-between border-b border-white/5 pb-2">
@@ -82,8 +83,11 @@ export function ColdTrafficParadox() {
                 <dd className="text-white/90">2.4x</dd>
               </div>
             </dl>
-            <div className="mt-8 inline-block rounded-md border border-[var(--primary)]/40 bg-[var(--primary)]/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--primary-light)]">
-              Acquisition engine.
+            <div className="mt-8 flex items-center gap-3">
+              <div className="h-3.5 w-[2px] rounded-full bg-[var(--primary-light)] shadow-[0_0_8px_var(--primary)]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--primary-light)]">
+                Acquisition engine.
+              </span>
             </div>
           </article>
         </div>
