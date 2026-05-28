@@ -1,36 +1,35 @@
 const plans = [
   {
-    name: "Single Brief",
-    price: "$19",
+    name: "Free",
+    price: "$0",
     period: "",
-    desc: "Pay as you go · zero commitment. Full intelligence brief for one product.",
-    cta: "Generate Brief",
+    desc: "1 campaign credit on install, no card required",
+    cta: "Start Free",
     featured: false,
   },
   {
-    name: "Starter Bundle",
-    price: "$49",
-    period: "",
-    desc: "3 briefs · saves $8. Test multiple products or hooks without a subscription.",
-    cta: "Get Starter Bundle",
+    name: "Starter Pack",
+    price: "$39",
+    period: "one-time",
+    desc: "5 campaign credits",
+    cta: "Get Starter",
+    featured: false,
+  },
+  {
+    name: "Growth Pack",
+    price: "$99",
+    period: "one-time",
+    desc: "15 campaign credits",
+    cta: "Get Growth Pack",
     featured: true,
   },
   {
-    name: "Growth Bundle",
-    price: "$99",
-    period: "",
-    desc: "7 briefs · saves $34. For brands running multiple tests and scaling.",
-    cta: "Get Growth Bundle",
+    name: "Scale Pack",
+    price: "$179",
+    period: "one-time",
+    desc: "30 campaign credits",
+    cta: "Get Scale Pack",
     featured: false,
-  },
-  {
-    name: "Scale Subscription",
-    price: "$79",
-    period: "/ month",
-    desc: "Unlimited briefs · unlocks after 1st use. Full access for high-volume stores.",
-    cta: "Subscribe Now",
-    featured: false,
-    dashed: true,
   },
 ];
 
@@ -41,15 +40,15 @@ export function Pricing() {
       <div className="relative mx-auto max-w-[1280px] px-6 py-28 lg:px-12 lg:py-36">
         <div className="mb-16 max-w-[700px]">
           <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--primary-light)]">
-            Business Model
+            Simple Pricing
           </div>
           <h2
             className="font-serif font-black"
             style={{ fontSize: "clamp(34px, 4.4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.015em" }}
           >
-            Credit-first acquisition.
+            Flexible credit packs.
             <br />
-            <span className="text-[var(--primary-mid)]">Earned subscriptions.</span>
+            <span className="text-[var(--primary-mid)]">No recurring subscriptions.</span>
           </h2>
         </div>
 
@@ -60,11 +59,11 @@ export function Pricing() {
               className={`flex flex-col rounded-2xl p-8 transition-transform ${
                 p.featured
                   ? "lg:-translate-y-2 border"
-                  : p.dashed ? "border border-dashed opacity-85" : "border"
+                  : "border"
               }`}
               style={{
                 borderColor: p.featured ? "var(--primary)" : "var(--border)",
-                background: p.featured ? "rgba(109,40,217,0.06)" : p.dashed ? "rgba(109,40,217,0.03)" : "transparent",
+                background: p.featured ? "rgba(109,40,217,0.06)" : "transparent",
               }}
             >
               <div className="flex items-center justify-between">
@@ -101,13 +100,15 @@ export function Pricing() {
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-12 flex justify-center text-center">
           <div className="inline-flex items-center gap-3 rounded-full border border-white/5 bg-white/[0.02] px-5 py-2.5 text-[13px] text-white/60">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--primary-light)]">
-              <path d="M12 5v14M5 12h14" />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--primary-light)]">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
             </svg>
             <span>
-              Need more? Add extra briefs to any plan for <strong className="font-medium text-white">$9 / credit</strong>.
+              All charges are billed in USD. Credits never expire.
             </span>
           </div>
         </div>
