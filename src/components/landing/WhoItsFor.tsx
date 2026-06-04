@@ -15,7 +15,11 @@ export function WhoItsFor() {
         </div>
         <h2
           className="font-serif font-black"
-          style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.015em" }}
+          style={{
+            fontSize: "clamp(32px, 4vw, 52px)",
+            lineHeight: 1.05,
+            letterSpacing: "-0.015em",
+          }}
         >
           Built for a specific kind
           <br />
@@ -28,16 +32,14 @@ export function WhoItsFor() {
               <span className="rounded-full border border-black/15 bg-white/40 px-4 py-2 font-mono text-[12px] uppercase tracking-wider text-black/75">
                 {t}
               </span>
-              {i < tags.length - 1 && (
-                <span className="text-black/25">·</span>
-              )}
+              {i < tags.length - 1 && <span className="text-black/25">·</span>}
             </span>
           ))}
         </div>
 
         <p className="mx-auto mt-14 max-w-[620px] text-[14px] leading-[1.6] text-black/50">
-          Not for you if you sell B2B, run on a non-Shopify stack, or want a
-          tool that pushes a Buy Now button on its own.
+          Not for you if you sell B2B, run on a non-Shopify stack, or want a tool that pushes a Buy
+          Now button on its own.
         </p>
       </div>
     </section>

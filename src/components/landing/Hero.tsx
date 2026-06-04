@@ -41,7 +41,9 @@ export function Hero() {
           </h1>
 
           <p className="mt-7 max-w-[480px] text-[18px] leading-[1.55] text-white/[0.48]">
-            Shopify knows what sells. Meta knows who buys. They don't talk pre-spend. Omni Target bridges that gap — turning real store data into a ready-to-launch Meta Ads brief in three minutes.
+            Shopify knows what sells. Meta knows who buys. They don't talk pre-spend. Omni Target
+            bridges that gap — turning real store data into a ready-to-launch Meta Ads brief in
+            three minutes.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-7">
@@ -50,15 +52,18 @@ export function Hero() {
                 <span className="cta-premium-label">Open Omni Target</span>
                 <span aria-hidden className="cta-premium-arrow">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7h11M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M1 7h11M7.5 2.5L12 7l-4.5 4.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </span>
               </span>
             </a>
-            <a
-              href="#how"
-              className="text-[15px] text-white/60 transition-colors hover:text-white"
-            >
+            <a href="#how" className="text-[15px] text-white/60 transition-colors hover:text-white">
               See how it works →
             </a>
           </div>

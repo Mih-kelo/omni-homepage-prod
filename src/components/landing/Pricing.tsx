@@ -44,7 +44,11 @@ export function Pricing() {
           </div>
           <h2
             className="font-serif font-black"
-            style={{ fontSize: "clamp(34px, 4.4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.015em" }}
+            style={{
+              fontSize: "clamp(34px, 4.4vw, 56px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.015em",
+            }}
           >
             Flexible credit packs.
             <br />
@@ -56,10 +60,9 @@ export function Pricing() {
           {plans.map((p) => (
             <div
               key={p.name}
-              className={`flex flex-col rounded-2xl p-8 transition-transform ${p.featured
-                  ? "lg:-translate-y-2 border"
-                  : "border"
-                }`}
+              className={`flex flex-col rounded-2xl p-8 transition-transform ${
+                p.featured ? "lg:-translate-y-2 border" : "border"
+              }`}
               style={{
                 borderColor: p.featured ? "var(--primary)" : "var(--border)",
                 background: p.featured ? "rgba(109,40,217,0.06)" : "transparent",
@@ -82,15 +85,14 @@ export function Pricing() {
                 </span>
                 <span className="font-mono text-[12px] text-white/40">{p.period}</span>
               </div>
-              <p className="mt-6 text-[14px] leading-[1.6] text-white/55">
-                {p.desc}
-              </p>
+              <p className="mt-6 text-[14px] leading-[1.6] text-white/55">{p.desc}</p>
               <a
                 href="https://app.omnitarget.co/"
-                className={`mt-10 inline-flex items-center justify-center rounded-lg px-5 py-3 text-[15px] font-medium transition-colors ${p.featured
+                className={`mt-10 inline-flex items-center justify-center rounded-lg px-5 py-3 text-[15px] font-medium transition-colors ${
+                  p.featured
                     ? "bg-[var(--primary)] text-white hover:bg-[#7c33ee]"
                     : "border border-white/15 text-white hover:bg-white/5"
-                  }`}
+                }`}
               >
                 {p.cta}
               </a>
@@ -100,13 +102,24 @@ export function Pricing() {
 
         <div className="mt-12 flex justify-center text-center">
           <div className="inline-flex items-center gap-3 rounded-full border border-white/5 bg-white/[0.02] px-5 py-2.5 text-[13px] text-white/60">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--primary-light)]">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-[var(--primary-light)]"
+            >
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="16" x2="12" y2="12" />
               <line x1="12" y1="8" x2="12.01" y2="8" />
             </svg>
             <span>
-              All charges are billed in USD via the secure Shopify App Bridge. Credits are subject to a 12-month dormancy policy.
+              All charges are billed in USD via the secure Shopify App Bridge. Credits are subject
+              to a 12-month dormancy policy.
             </span>
           </div>
         </div>
@@ -114,4 +127,3 @@ export function Pricing() {
     </section>
   );
 }
-

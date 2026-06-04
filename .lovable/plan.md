@@ -33,17 +33,20 @@ Replace the default theme with the spec colors, converted to `oklch` and registe
 - `--terminal-bg` `#0c0c18`
 
 Backgrounds:
+
 - Body line grid: `linear-gradient(rgba(109,40,217,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(109,40,217,0.05) 1px, transparent 1px)` at `56px 56px`.
 - Hero radial glow: absolutely positioned div, top-right, `radial-gradient(circle, rgba(109,40,217,0.22), transparent 70%)`, ~900px, blurred.
 
 ## Typography
 
 Load via Google Fonts `<link>` in `__root.tsx` head:
+
 - Playfair Display 700/900 (headlines)
 - Epilogue 400/500/600 (body/UI)
 - JetBrains Mono 400/500 (mono labels, terminal)
 
 Expose as Tailwind families through `@theme inline`:
+
 - `--font-serif: 'Playfair Display', serif`
 - `--font-sans: 'Epilogue', system-ui, sans-serif`
 - `--font-mono: 'JetBrains Mono', monospace`
@@ -55,6 +58,7 @@ Apply Epilogue as the default body font.
 **Hero** — full viewport, left-aligned, two-column grid on `lg`. Mono pill badge ("SHOPIFY STORE INTELLIGENCE"). Playfair headline 84px desktop (clamps down on mobile) with "Before you spend." on its own line in `--primary-mid`. Subhead Epilogue 18px, max-width 480px, 48% white. Primary button solid `#6d28d9`, secondary text link "See how it works →" at 60% opacity. Right column: `BriefTerminal`.
 
 **BriefTerminal** — `#0c0c18` card, `rgba(109,40,217,0.20)` border, 16px radius. Header row with red/yellow/green dots + filename `brief.omnitarget`. Body is a monospace key/value list:
+
 ```
 store     →  maison-rive.com
 gateway   →  Silk Camisole — Ivory
@@ -63,6 +67,7 @@ hook_1    →  "The one piece that quietly outsells everything."
 optimize  →  Purchases · 7d click
 budget    →  $42 / day · scale at ROAS 1.8
 ```
+
 Gateway row highlighted with `#f0c674` text and a thin gold left border. Keys at 28% white, values at 82%.
 
 **How it works** — `#f4f2ed` section, foreground `#08080f`. Three columns, each: big Playfair number in `--primary` (~72px), Epilogue 600 title, grey description. Thin vertical dividers between columns on desktop.
@@ -80,6 +85,7 @@ Gateway row highlighted with `#f0c674` text and a thin gold left border. Keys at
 ## Animation / interaction
 
 Restraint only. No scroll libraries. CSS only:
+
 - Hero content: opacity/translate-y fade-in on mount via a small `motion-safe` keyframe.
 - Buttons: 150ms background transition.
 - Terminal gateway row: subtle 2s pulse on the gold accent border.

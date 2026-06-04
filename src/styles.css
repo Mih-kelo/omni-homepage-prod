@@ -128,8 +128,13 @@
 }
 
 @keyframes gold-pulse {
-  0%, 100% { box-shadow: inset 2px 0 0 var(--gold-light); }
-  50% { box-shadow: inset 2px 0 0 rgba(240, 198, 116, 0.5); }
+  0%,
+  100% {
+    box-shadow: inset 2px 0 0 var(--gold-light);
+  }
+  50% {
+    box-shadow: inset 2px 0 0 rgba(240, 198, 116, 0.5);
+  }
 }
 .gold-pulse {
   animation: gold-pulse 2.4s ease-in-out infinite;
@@ -141,19 +146,26 @@
   display: inline-flex;
   padding: 1px;
   border-radius: 12px;
-  background: linear-gradient(140deg, rgba(196,181,253,0.55), rgba(109,40,217,0.25) 40%, rgba(201,145,58,0.5));
+  background: linear-gradient(
+    140deg,
+    rgba(196, 181, 253, 0.55),
+    rgba(109, 40, 217, 0.25) 40%,
+    rgba(201, 145, 58, 0.5)
+  );
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.06) inset,
-    0 18px 40px -18px rgba(109,40,217,0.65),
-    0 0 0 1px rgba(0,0,0,0.4);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 18px 40px -18px rgba(109, 40, 217, 0.65),
+    0 0 0 1px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
 }
 .cta-premium:hover {
   transform: translateY(-1px);
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.08) inset,
-    0 22px 50px -16px rgba(139,92,246,0.8),
-    0 0 0 1px rgba(0,0,0,0.4);
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 22px 50px -16px rgba(139, 92, 246, 0.8),
+    0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 .cta-premium-inner {
   position: relative;
@@ -163,7 +175,7 @@
   padding: 14px 22px 14px 26px;
   border-radius: 11px;
   background:
-    radial-gradient(120% 180% at 0% 0%, rgba(139,92,246,0.35), transparent 55%),
+    radial-gradient(120% 180% at 0% 0%, rgba(139, 92, 246, 0.35), transparent 55%),
     linear-gradient(180deg, #2a1357 0%, #160a32 100%);
   color: #fff;
   font-family: var(--font-sans);
@@ -176,7 +188,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0) 45%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 45%);
   pointer-events: none;
 }
 .cta-premium-label {

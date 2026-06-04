@@ -23,7 +23,11 @@ export function HowItWorks() {
         <div className="mb-16 flex items-end justify-between gap-8">
           <h2
             className="font-serif font-black"
-            style={{ fontSize: "clamp(34px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.01em" }}
+            style={{
+              fontSize: "clamp(34px, 4vw, 52px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.01em",
+            }}
           >
             From store to brief
             <br />
@@ -47,9 +51,7 @@ export function HowItWorks() {
                 {s.n}
               </div>
               <h3 className="mt-6 text-[20px] font-semibold">{s.t}</h3>
-              <p className="mt-3 max-w-[320px] text-[15px] leading-[1.6] text-black/55">
-                {s.d}
-              </p>
+              <p className="mt-3 max-w-[320px] text-[15px] leading-[1.6] text-black/55">{s.d}</p>
             </div>
           ))}
         </div>

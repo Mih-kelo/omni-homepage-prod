@@ -72,16 +72,54 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Omni Target | Pre-Spend Intelligence for Shopify Fashion Brands" },
+      {
+        name: "description",
+        content:
+          "Shopify knows what sells. Meta knows who buys. They don't talk pre-spend. Omni Target bridges that gap — turning real store data into a ready-to-launch Meta Ads brief in three minutes.",
+      },
+      { name: "author", content: "Omni Target" },
+      {
+        property: "og:title",
+        content: "Omni Target | Pre-Spend Intelligence for Shopify Fashion Brands",
+      },
+      {
+        property: "og:description",
+        content:
+          "Shopify knows what sells. Meta knows who buys. They don't talk pre-spend. Omni Target bridges that gap — turning real store data into a ready-to-launch Meta Ads brief in three minutes.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      {
+        property: "og:image",
+        content:
+          "https://res.cloudinary.com/denwiqjid/image/upload/v1779707457/omni_target_logo_ae2epf.png",
+      },
+      { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Omni Target | Pre-Spend Intelligence for Shopify Fashion Brands",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Shopify knows what sells. Meta knows who buys. They don't talk pre-spend. Omni Target bridges that gap — turning real store data into a ready-to-launch Meta Ads brief in three minutes.",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://res.cloudinary.com/denwiqjid/image/upload/v1779707457/omni_target_logo_ae2epf.png",
+      },
     ],
     links: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "https://res.cloudinary.com/denwiqjid/image/upload/v1779707457/omni_target_logo_ae2epf.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "https://res.cloudinary.com/denwiqjid/image/upload/v1779707457/omni_target_logo_ae2epf.png",
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

@@ -2,7 +2,7 @@ const rows = [
   { k: "store", v: "Pilot Brand (NDA)" },
   { k: "gateway", v: "Product B", highlight: true },
   { k: "format", v: "UGC carousel, 4 frames" },
-  { k: "hook_1", v: "\"The one piece that quietly outsells everything.\"" },
+  { k: "hook_1", v: '"The one piece that quietly outsells everything."' },
   { k: "optimize", v: "Purchases · 7d click" },
   { k: "budget", v: "$42 / day · scale at ROAS 1.8" },
 ];
@@ -19,9 +19,7 @@ export function BriefTerminal() {
           <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
           <span className="h-3 w-3 rounded-full bg-[#28c840]" />
         </div>
-        <span className="font-mono text-[11px] tracking-wider text-white/40">
-          brief.omnitarget
-        </span>
+        <span className="font-mono text-[11px] tracking-wider text-white/40">brief.omnitarget</span>
         <span className="font-mono text-[11px] text-white/30">●</span>
       </div>
 
@@ -36,22 +34,10 @@ export function BriefTerminal() {
             {r.highlight && (
               <div className="absolute left-0 top-0 h-full w-[2px] bg-[var(--gold-light)] shadow-[0_0_10px_rgba(240,198,116,0.4)] animate-pulse" />
             )}
-            <span
-              className={
-                r.highlight
-                  ? "text-[var(--gold-light)]"
-                  : "text-white/[0.28]"
-              }
-            >
+            <span className={r.highlight ? "text-[var(--gold-light)]" : "text-white/[0.28]"}>
               {r.k}
             </span>
-            <span
-              className={
-                r.highlight
-                  ? "text-[var(--gold-light)]"
-                  : "text-white/[0.82]"
-              }
-            >
+            <span className={r.highlight ? "text-[var(--gold-light)]" : "text-white/[0.82]"}>
               <span className="text-white/30">→ </span>
               {r.v}
             </span>

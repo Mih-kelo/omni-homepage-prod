@@ -8,7 +8,11 @@ export function ColdTrafficParadox() {
         </div>
         <h2
           className="max-w-[900px] font-serif font-black"
-          style={{ fontSize: "clamp(34px, 5vw, 64px)", lineHeight: 1.05, letterSpacing: "-0.015em" }}
+          style={{
+            fontSize: "clamp(34px, 5vw, 64px)",
+            lineHeight: 1.05,
+            letterSpacing: "-0.015em",
+          }}
         >
           Your bestseller is not
           <br />
@@ -17,15 +21,11 @@ export function ColdTrafficParadox() {
 
         <div className="relative mt-16 grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1fr_auto_1fr] md:gap-10">
           {/* Bestseller */}
-          <article
-            className="rounded-2xl border border-white/5 bg-[#0c0c18] p-8"
-          >
+          <article className="rounded-2xl border border-white/5 bg-[#0c0c18] p-8">
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
               Organic bestseller
             </div>
-            <div className="mt-6 font-serif text-[28px] leading-tight text-white">
-              Product A
-            </div>
+            <div className="mt-6 font-serif text-[28px] leading-tight text-white">Product A</div>
             <dl className="mt-8 space-y-3 font-mono text-[13px]">
               <div className="flex justify-between border-b border-white/5 pb-2">
                 <dt className="text-white/40">first_time_buyers</dt>
@@ -50,9 +50,7 @@ export function ColdTrafficParadox() {
 
           {/* VS */}
           <div className="flex items-center justify-center">
-            <div className="font-serif text-[28px] italic text-white/30 md:text-[20px]">
-              vs
-            </div>
+            <div className="font-serif text-[28px] italic text-white/30 md:text-[20px]">vs</div>
           </div>
 
           {/* Gateway */}
@@ -66,9 +64,7 @@ export function ColdTrafficParadox() {
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--primary-light)]">
               Gateway product
             </div>
-            <div className="mt-6 font-serif text-[28px] leading-tight text-white">
-              Product B
-            </div>
+            <div className="mt-6 font-serif text-[28px] leading-tight text-white">Product B</div>
             <dl className="mt-8 space-y-3 font-mono text-[13px]">
               <div className="flex justify-between border-b border-white/5 pb-2">
                 <dt className="text-white/40">first_time_buyers</dt>
@@ -93,8 +89,8 @@ export function ColdTrafficParadox() {
         </div>
 
         <p className="mt-12 max-w-[780px] font-serif text-[20px] italic leading-relaxed text-[var(--gold-light)]">
-          The product that converts your existing audience is rarely the one that
-          earns you a new one.
+          The product that converts your existing audience is rarely the one that earns you a new
+          one.
         </p>
       </div>
     </section>

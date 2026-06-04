@@ -17,15 +17,19 @@ export function WhatYouGet() {
           </div>
           <h2
             className="font-serif font-black"
-            style={{ fontSize: "clamp(34px, 4.4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.015em" }}
+            style={{
+              fontSize: "clamp(34px, 4.4vw, 56px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.015em",
+            }}
           >
             A complete brief.
             <br />
             <span className="text-[var(--primary-mid)]">Nothing missing.</span>
           </h2>
           <p className="mt-6 max-w-[380px] text-[16px] leading-[1.6] text-white/[0.48]">
-            Everything a media buyer needs on day one — derived from your store,
-            not from a template.
+            Everything a media buyer needs on day one — derived from your store, not from a
+            template.
           </p>
         </div>
 
@@ -41,7 +45,13 @@ export function WhatYouGet() {
                 }}
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6.5L4.8 9L10 3.5" stroke="var(--primary-light)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M2 6.5L4.8 9L10 3.5"
+                    stroke="var(--primary-light)"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </span>
               <span className="text-[17px] leading-[1.55] text-white/90">{it}</span>
