@@ -1,7 +1,7 @@
 const tags = [
   "Fashion & lifestyle",
   "Shopify-native",
-  "$5k–$500k/mo revenue",
+  "$5k–$100k/mo revenue",
   "DTC operators",
   "Brand-led teams",
 ];
