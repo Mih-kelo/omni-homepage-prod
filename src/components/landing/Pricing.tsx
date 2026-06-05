@@ -4,6 +4,7 @@ const plans = [
     price: "$0",
     period: "",
     desc: "1 campaign credit on install, no card required",
+    features: [],
     cta: "Start Free",
     featured: false,
   },
@@ -11,7 +12,13 @@ const plans = [
     name: "Starter Pack",
     price: "$39",
     period: "one-time",
-    desc: "5 campaign credits",
+    desc: "Perfect for testing your first collection and identifying initial winners.",
+    features: [
+      "5 Campaign Briefs",
+      "Store Intelligence Insights",
+      "Creative Angle Blueprints",
+      "Valid for 12 months",
+    ],
     cta: "Get Starter",
     featured: false,
   },
@@ -19,7 +26,13 @@ const plans = [
     name: "Growth Pack",
     price: "$99",
     period: "one-time",
-    desc: "15 campaign credits",
+    desc: "For growing brands scaling multiple styles and running weekly tests.",
+    features: [
+      "15 Campaign Briefs",
+      "Everything in Starter Pack",
+      "Ideal for testing 3+ products",
+      "Save 15% per brief ($6.60 / brief)",
+    ],
     cta: "Get Growth Pack",
     featured: true,
   },
@@ -27,7 +40,13 @@ const plans = [
     name: "Scale Pack",
     price: "$179",
     period: "one-time",
-    desc: "30 campaign credits",
+    desc: "High volume for massive collection drops and rapid creative testing.",
+    features: [
+      "30 Campaign Briefs",
+      "Everything in Growth Pack",
+      "Ideal for full catalog coverage",
+      "Best Value ($5.96 / brief)",
+    ],
     cta: "Get Scale Pack",
     featured: false,
   },
@@ -86,6 +105,28 @@ export function Pricing() {
                 <span className="font-mono text-[12px] text-white/40">{p.period}</span>
               </div>
               <p className="mt-6 text-[14px] leading-[1.6] text-white/55">{p.desc}</p>
+              {p.features && p.features.length > 0 && (
+                <ul className="mt-6 space-y-3">
+                  {p.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-3 text-[14px] text-white/70">
+                      <svg
+                        className="mt-0.5 shrink-0 text-[var(--primary)]"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <a
                 href="https://app.omnitarget.co/"
                 className={`mt-10 inline-flex items-center justify-center rounded-lg px-5 py-3 text-[15px] font-medium transition-colors ${
