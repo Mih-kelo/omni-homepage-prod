@@ -159,8 +159,7 @@ export function Pricing() {
               <line x1="12" y1="8" x2="12.01" y2="8" />
             </svg>
             <span>
-              All charges are billed in USD via the secure Shopify App Bridge. Credits are subject
-              to a 12-month dormancy policy.
+              All charges are billed safely in USD via the official Shopify Billing API. Credits are subject to a 12-month dormancy policy.
             </span>
           </div>
         </div>
