@@ -38,15 +38,17 @@ export function LumenExperience() {
   }, [resolve]);
 
   if (mode === "still") {
+    // keyed so a mid-journey demotion gets a fresh root — the conductor
+    // writes graded colors as inline vars, which must not outlive it
     return (
-      <div className="lumen">
+      <div className="lumen" key="still">
         <StillEdition />
       </div>
     );
   }
 
   return (
-    <div className="lumen" ref={rootRef}>
+    <div className="lumen" key="cinematic" ref={rootRef}>
       <FirstBreath />
       <ClientOnly>
         <PresenceTracker />

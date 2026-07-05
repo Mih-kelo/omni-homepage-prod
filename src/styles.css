@@ -813,14 +813,43 @@ body:has(.lumen) { background-color: #fafaf8; }
 /* numerals wall (the range) */
 .lx-bignum { font-family: var(--lx-serif); font-weight: 700; font-size: clamp(52px, 8.5vw, 122px); letter-spacing: -0.035em; line-height: 1; color: var(--lx-ink); font-variant-numeric: tabular-nums; }
 
+/* the paradox theatre: two products face each other across "vs";
+   narrow screens stage them one above the other instead */
+.lx-versus {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(20px, 5vw, 80px);
+  align-items: center;
+}
+.lx-versus-mark {
+  font: 500 24px var(--lx-serif);
+  color: var(--lx-ink-faint);
+}
+@media (max-width: 760px) {
+  .lx-versus { grid-template-columns: 1fr; gap: 16px; }
+  .lx-versus-mark { justify-self: center; }
+}
+
 /* ---- LUMEN small screens: reframed, never hidden ---- */
 @media (max-width: 640px) {
   .lx-panel { gap: 8px; padding: 8px 8px 8px 12px; }
   .lx-panel-word { font-size: 10px; letter-spacing: 0.12em; }
   .lx-thread { display: none; }
   .lx-cta { padding: 9px 14px !important; font-size: 10px; }
-  .lumen-stage { padding-inline: clamp(20px, 7vw, 48px); align-items: end; padding-bottom: 16vh; }
+  /* flow layout breathes on its own — no forced full-viewport sections */
+  .lumen-stage {
+    min-height: 82svh;
+    padding-inline: clamp(20px, 7vw, 48px);
+    padding-block: 88px 64px;
+  }
   .lx-wall { font-size: clamp(30px, 9vw, 44px); }
   .lx-bignum { font-size: clamp(48px, 16vw, 80px); }
   .lx-card { min-width: 0; width: 100%; }
+}
+
+/* ---- ultra-wide: the composition caps and centers; gutters widen ---- */
+@media (min-width: 1800px) {
+  .lumen-stage { padding-inline: clamp(84px, 6vw, 160px); }
+  .lx-bleed,
+  .lx-split { max-width: 1720px; margin-inline: auto; }
 }

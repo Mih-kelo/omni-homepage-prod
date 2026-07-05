@@ -56,6 +56,37 @@ export function TopBar() {
     if (open) indexRef.current?.querySelector("a")?.focus();
   }, [open]);
 
+  // phones: two fixed bars would sandwich the viewport — the bar retires
+  // while scrolling down and returns on any scroll up (never mid-index)
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    let lastY = window.scrollY;
+    let hidden = false;
+    const setHidden = (v: boolean) => {
+      hidden = v;
+      const el = rootRef.current;
+      if (!el) return;
+      if (v) el.setAttribute("data-hidden", "");
+      else el.removeAttribute("data-hidden");
+    };
+    const onScroll = () => {
+      const y = window.scrollY;
+      const dy = y - lastY;
+      lastY = y;
+      if (!mq.matches || open) {
+        if (hidden) setHidden(false);
+        return;
+      }
+      if (!hidden && dy > 3 && y > 180) setHidden(true);
+      else if (hidden && (dy < -3 || y <= 180)) setHidden(false);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      setHidden(false);
+    };
+  }, [open]);
+
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape" && open) {
       e.stopPropagation();

@@ -46,19 +46,9 @@ export function Paradox() {
           />
         </div>
         {/* the two products spread to the edges — the comparison spans the room */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr auto 1fr",
-            gap: "clamp(20px, 5vw, 80px)",
-            alignItems: "center",
-          }}
-        >
+        <div className="lx-versus">
           <ProductCard data={COPY.paradox.bestseller} gold delay={0.1} />
-          <span
-            aria-hidden="true"
-            style={{ font: "500 24px var(--lx-serif)", color: "var(--lx-ink-faint)" }}
-          >
+          <span className="lx-versus-mark" aria-hidden="true">
             vs
           </span>
           <ProductCard data={COPY.paradox.gateway} delay={0.28} />

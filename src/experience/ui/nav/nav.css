@@ -144,3 +144,21 @@
   }
   .lx-topbar-index { right: 5px; }
 }
+
+/* phones: the bar retires on scroll-down, returns on scroll-up (TopBar
+   toggles data-hidden on the root; desktop never sets it) */
+.lx-topbar-root[data-hidden] .lx-topbar {
+  transform: translateY(-160%);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .lx-topbar {
+    transition:
+      transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 320ms ease;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-topbar { transition: none; }
+}
