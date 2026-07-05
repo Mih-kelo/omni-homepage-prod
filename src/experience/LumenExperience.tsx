@@ -1,15 +1,14 @@
 import { Suspense, lazy, useEffect, useRef } from "react";
 import { ClientOnly } from "./lib/client";
 import { useMode } from "./lib/a11y/modeStore";
+import { useTier } from "./lib/tiers/tierStore";
 import { PresenceTracker } from "./lib/presence/PresenceTracker";
 import { JourneyScroll } from "./lib/journey/JourneyScroll";
 import { StoryPath } from "./ui/timeline/StoryPath";
 import { FirstBreath } from "./ui/chrome/FirstBreath";
 import { Colophon } from "./ui/chrome/Colophon";
 import { DebugHud } from "./ui/chrome/DebugHud";
-import { InstrumentPanel } from "./ui/panel/InstrumentPanel";
 import { TopBar } from "./ui/nav/TopBar";
-import { StillEdition } from "./still/StillEdition";
 import { Threshold } from "./chambers/Threshold";
 import { Listening } from "./chambers/Listening";
 import { Paradox } from "./chambers/Paradox";
@@ -30,35 +29,25 @@ const WorldCanvas = lazy(() => import("./world/WorldCanvas"));
 export function LumenExperience() {
   const rootRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLElement>(null);
-  const mode = useMode((s) => s.mode);
   const resolve = useMode((s) => s.resolve);
+  const webglOk = useTier((s) => s.webglOk);
 
   useEffect(() => {
     resolve();
   }, [resolve]);
 
-  if (mode === "still") {
-    // keyed so a mid-journey demotion gets a fresh root — the conductor
-    // writes graded colors as inline vars, which must not outlive it
-    return (
-      <div className="lumen" key="still">
-        <StillEdition />
-      </div>
-    );
-  }
-
   return (
-    <div className="lumen" key="cinematic" ref={rootRef}>
+    <div className="lumen" ref={rootRef}>
       <FirstBreath />
       <ClientOnly>
         <PresenceTracker />
-        {mode === "cinematic" && (
+        {webglOk === true && (
           <Suspense fallback={null}>
             <WorldCanvas />
           </Suspense>
         )}
         <JourneyScroll rootRef={rootRef} trackRef={trackRef} />
-        {mode === "cinematic" && <StoryPath />}
+        <StoryPath />
       </ClientOnly>
       <main className="lumen-track" ref={trackRef}>
         <Threshold />
@@ -72,7 +61,6 @@ export function LumenExperience() {
       </main>
       <Colophon />
       <TopBar />
-      <InstrumentPanel />
       <DebugHud />
     </div>
   );

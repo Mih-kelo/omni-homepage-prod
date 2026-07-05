@@ -8,7 +8,8 @@ import type { ChamberId } from "../../types";
  * (journeyStore.nodeFracs), so the words and the stroke share one source
  * of truth: a section begins writing shortly after the pen leaves the
  * previous node and finishes exactly as the tip arrives at its own node.
- * Scrolling back un-writes. One rAF for the whole page, listeners called
+ * Writing happens once per page load (a monotonic high-water mark), so
+ * scrolling back never un-writes. One rAF for the whole page, listeners called
  * only when their value changes — zero React re-renders.
  *
  * Chamber 0 is the exception: the hero writes itself in over ~1.2s as the
@@ -21,13 +22,15 @@ interface Registration {
   chamber: number;
   fn: WriteFn;
   last: number;
+  /** monotonic high-water mark — once written, a line stays written */
+  peak: number;
 }
 
-/** writing begins as the pen leaves the previous node… */
-const START = 0.08;
-/** …and finishes well before the tip lands on ours, so the heading is
- *  fully written while it is still comfortably on screen */
-const COMPLETE = 0.72;
+/** writing begins the moment the pen leaves the previous node… */
+const START = 0;
+/** …and finishes by the middle of the approach, so the words are fully
+ *  written while the section is still comfortably on screen */
+const COMPLETE = 0.45;
 const HERO_DELAY_MS = 250;
 const HERO_WRITE_MS = 1200;
 /** if the world never reports ready (no WebGL etc.), write the hero anyway */
@@ -64,10 +67,12 @@ function writeProgress(chamber: number, now: number): number {
 
 function tick(now: number) {
   for (const r of regs) {
+    if (r.last === 1) continue; // written once per page load — it stays
     const w = writeProgress(r.chamber, now);
-    if (w !== r.last) {
-      r.last = w;
-      r.fn(w);
+    if (w > r.peak) r.peak = w;
+    if (r.peak !== r.last) {
+      r.last = r.peak;
+      r.fn(r.peak);
     }
   }
   raf = regs.size > 0 ? requestAnimationFrame(tick) : 0;
@@ -75,7 +80,7 @@ function tick(now: number) {
 
 /** register a writing target; `fn` receives 0..1; returns unregister */
 export function registerWriting(chamber: number, fn: WriteFn): () => void {
-  const r: Registration = { chamber, fn, last: -1 };
+  const r: Registration = { chamber, fn, last: -1, peak: 0 };
   if (regs.size === 0) engineT0 = performance.now();
   regs.add(r);
   if (!raf) raf = requestAnimationFrame(tick);

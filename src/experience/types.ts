@@ -1,4 +1,4 @@
-/** Shared contracts for the LUMEN experience. Frozen — workers code against these. */
+﻿/** Shared contracts for the LUMEN experience. Frozen â€” workers code against these. */
 
 export type ChamberId =
   | "threshold"
@@ -34,7 +34,7 @@ export interface ChamberDef {
 /** piecewise-linear grade keyframes: [journeyProgress 0..1, grade 0..1] */
 export type GradeKeyframe = readonly [number, number];
 
-export type ExperienceMode = "boot" | "cinematic" | "still";
+export type ExperienceMode = "boot" | "cinematic";
 
 export type Tier = 0 | 1 | 2;
 

@@ -9,8 +9,8 @@ import { COPY } from "../config/copy";
  */
 export function Range() {
   const gateway = COPY.paradox.gateway;
-  const roas = gateway.rows.find(([k]) => k === "cold_traffic_ROAS")?.[1] ?? "2.4x";
-  const ftb = gateway.rows.find(([k]) => k === "first_time_buyers")?.[1] ?? "64%";
+  const roas = gateway.rows.find(([k]) => k === "Cold-traffic ROAS")?.[1] ?? "2.4x";
+  const ftb = gateway.rows.find(([k]) => k === "First-time buyers")?.[1] ?? "64%";
   return (
     <ChamberSection id="range" justify="stretch">
       <div

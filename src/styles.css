@@ -252,6 +252,9 @@
   color: var(--lx-ink);
   font-family: var(--lx-grotesk);
   -webkit-font-smoothing: antialiased;
+  /* nothing may widen the page: clip (not hidden — sticky survives) so
+     stray overflow can never expose the document background as a strip */
+  overflow-x: clip;
 }
 
 .lumen ::selection { background: rgba(99, 102, 241, 0.22); }
@@ -385,62 +388,7 @@
   color: var(--lx-ink-soft);
 }
 
-/* ---- instrument panel ---- */
-.lx-panel {
-  position: fixed;
-  left: 50%;
-  bottom: max(18px, env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 10px 14px 10px 20px;
-  border: 1px solid var(--lx-hairline);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--lx-bg) 72%, transparent);
-  -webkit-backdrop-filter: blur(14px) saturate(1.1);
-  backdrop-filter: blur(14px) saturate(1.1);
-  color: var(--lx-ink);
-  max-width: min(92vw, 760px);
-}
-.lx-panel-word {
-  font-family: var(--lx-serif);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.18em;
-  color: var(--lx-ink);
-  text-decoration: none;
-  white-space: nowrap;
-}
-.lx-thread {
-  position: relative;
-  width: clamp(60px, 14vw, 180px);
-  height: 1px;
-  background: var(--lx-hairline);
-}
-.lx-thread > i {
-  position: absolute;
-  inset: 0;
-  transform-origin: left center;
-  transform: scaleX(0);
-  background: var(--lx-accent);
-  display: block;
-}
-.lx-panel button,
-.lx-panel .lx-panel-link {
-  font-family: var(--lx-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--lx-ink-faint);
-  background: none;
-  border: none;
-  padding: 8px 2px;
-  cursor: pointer;
-}
-.lx-panel button:hover, .lx-panel .lx-panel-link:hover { color: var(--lx-accent); }
-.lx-panel button[aria-pressed="true"] { color: var(--lx-accent); }
+/* ---- the one action (top bar + hero + pricing) ---- */
 .lx-cta {
   font-family: var(--lx-mono);
   font-size: 11px;
@@ -832,10 +780,9 @@ body:has(.lumen) { background-color: #fafaf8; }
 
 /* ---- LUMEN small screens: reframed, never hidden ---- */
 @media (max-width: 640px) {
-  .lx-panel { gap: 8px; padding: 8px 8px 8px 12px; }
-  .lx-panel-word { font-size: 10px; letter-spacing: 0.12em; }
-  .lx-thread { display: none; }
   .lx-cta { padding: 9px 14px !important; font-size: 10px; }
+  /* cursor-presence microlabels have no cursor to answer on touch */
+  .lx-threshold-labels { display: none; }
   /* flow layout breathes on its own — no forced full-viewport sections */
   .lumen-stage {
     min-height: 82svh;

@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
 import { TIMING } from "../../config/motion";
 import { useJourney } from "../../lib/journey/journeyStore";
-import { useMode } from "../../lib/a11y/modeStore";
+import { useTier } from "../../lib/tiers/tierStore";
 
 const BREATHED_KEY = "lumen-breathed";
 
@@ -31,7 +31,9 @@ export function FirstBreath() {
 
     let raf = 0;
     const check = () => {
-      const ready = useJourney.getState().worldReady || useMode.getState().mode === "still";
+      // no-WebGL visitors run canvas-free: don't wait on a world that
+      // will never report ready — the maxWait guard lifts the veil
+      const ready = useJourney.getState().worldReady || useTier.getState().webglOk === false;
       const waited = performance.now() - start;
       if ((ready && waited > (repeat ? 220 : 1100)) || waited > maxWait) {
         setPhase("condense");

@@ -162,3 +162,13 @@
 @media (prefers-reduced-motion: reduce) {
   .lx-topbar { transition: none; }
 }
+
+/* small screens: the bar loosens instead of cramming — wordmark and
+   trigger shrink, gaps tighten, the action stays a full tap target */
+@media (max-width: 640px) {
+  .lx-topbar { gap: 10px; padding: 6px 6px 6px 13px; }
+  .lx-topbar-word { font-size: 10.5px; letter-spacing: 0.13em; }
+  .lx-topbar-actions { gap: 8px; }
+  .lx-topbar-trigger { font-size: 10px; padding: 8px 4px; }
+  .lx-topbar-index { left: 0; right: 0; width: auto; }
+}

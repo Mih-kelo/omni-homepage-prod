@@ -45,6 +45,7 @@ export function ThresholdLabels() {
     <div
       ref={wrap}
       aria-hidden="true"
+      className="lx-threshold-labels"
       style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
     >
       {LABELS.map((l) => (
