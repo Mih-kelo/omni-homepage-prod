@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { BOUNDARIES } from "../../config/journey";
 
 /**
  * The journey store — the conductor's shared state (Direction §7).
@@ -17,6 +18,21 @@ export interface JourneyState {
   /** 0 light → 1 dark passage */
   grade: number;
   worldReady: boolean;
+  /**
+   * chamber bands: cumulative END of each chamber as a fraction of the
+   * scrollable track (last entry = 1). MEASURED from the real DOM by
+   * JourneyScroll on every ScrollTrigger refresh — the share-based
+   * estimate below only bridges the instant before the first measure.
+   */
+  bands: number[];
+  /**
+   * per-chamber node-arrival fractions along the story path (cumulative
+   * path length at each chamber's node / total length). Published by
+   * StoryPath after each geometry measure; null until the first measure.
+   * The writing engine scrubs text against these so the thread and the
+   * words share one source of truth.
+   */
+  nodeFracs: number[] | null;
   channels: Record<string, number>;
   /** session memory (Direction §5): spent once, in the Observatory */
   memory: {
@@ -34,6 +50,8 @@ export interface JourneyState {
   ) => void;
   setSmoothed: (p: number) => void;
   setWorldReady: (ready: boolean) => void;
+  setBands: (bands: number[]) => void;
+  setNodeFracs: (nodeFracs: number[]) => void;
   setChannel: (key: string, value: number) => void;
   rememberSlide: (id: string) => void;
   rememberSway: () => void;
@@ -49,6 +67,8 @@ export const useJourney = create<JourneyState>((set, get) => ({
   chamberLocal: 0,
   grade: 0,
   worldReady: false,
+  bands: [...BOUNDARIES],
+  nodeFracs: null,
   channels: {},
   memory: {
     hoveredSlides: new Set<string>(),
@@ -60,6 +80,8 @@ export const useJourney = create<JourneyState>((set, get) => ({
     set({ rawProgress, velocity, chamberIndex, chamberLocal, grade }),
   setSmoothed: (smoothedProgress) => set({ smoothedProgress }),
   setWorldReady: (worldReady) => set({ worldReady }),
+  setBands: (bands) => set({ bands }),
+  setNodeFracs: (nodeFracs) => set({ nodeFracs }),
   setChannel: (key, value) => {
     // hot path: mutate in place, no new object per frame — readers poll via getState()
     get().channels[key] = value;

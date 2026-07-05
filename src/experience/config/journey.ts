@@ -1,10 +1,12 @@
-import type { ChamberDef, GradeKeyframe } from "../types";
+import type { ChamberDef } from "../types";
 
 /**
  * The journey — Direction §3. Eight chambers of one instrument along a
- * world-space spine (−Z is deeper). Scroll shares: 7/12/13/15/18/12/8/15.
- * Each chamber's first cameraPoint is its entry pose; the global spline
- * threads every point in order (see world/spine.ts).
+ * world-space spine (−Z is deeper). Sections flow at natural height; the
+ * real scroll bands are MEASURED from the DOM (lib/journey), so `share`
+ * only seeds the pre-measure fallback. Each chamber's first cameraPoint
+ * is its entry pose; the global spline threads every point in order
+ * (see world/spine.ts).
  */
 
 const v = (x: number, y: number, z: number) => ({ x, y, z });
@@ -92,31 +94,16 @@ export const CHAMBERS: ChamberDef[] = [
   },
 ];
 
-/** cumulative progress boundary at the END of each chamber (from shares) */
+/**
+ * Cumulative progress boundary at the END of each chamber, from shares —
+ * ONLY the pre-measure fallback for the journey store's `bands`; the real
+ * bands are measured from the DOM by JourneyScroll on every refresh.
+ */
 export const BOUNDARIES: number[] = (() => {
   const total = CHAMBERS.reduce((s, c) => s + c.share, 0);
   let acc = 0;
   return CHAMBERS.map((c) => (acc += c.share / total));
 })();
-
-/**
- * Grade curve (0 light → 1 dark), piecewise linear over journey progress.
- * Dark exists only across the Core and the Observatory, entered and exited
- * in travel — no cuts (Direction §2/§3). Through-the-glass returns the
- * light sharply-but-continuously at core-local ≈ 0.8.
- */
-export const GRADE_KEYFRAMES: GradeKeyframe[] = [
-  [0, 0],
-  [0.295, 0], // late Paradox — the aperture begins to dim
-  [0.345, 1], // inside the Core's darkness
-  [0.436, 1], // hold until the transit
-  [0.462, 0], // through the glass — brightest white on the far side
-  [0.752, 0], // late Range — the ceiling opens
-  [0.795, 1], // the Observatory vault
-  [0.845, 1],
-  [0.888, 0], // descent — light rises like dawn
-  [1, 0],
-];
 
 export const CHAMBER_INDEX_BY_ID = Object.fromEntries(
   CHAMBERS.map((c) => [c.id, c.index]),

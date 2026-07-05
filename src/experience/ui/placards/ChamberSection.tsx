@@ -1,11 +1,12 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { ChamberId } from "../../types";
 import { CHAMBERS, CHAMBER_INDEX_BY_ID } from "../../config/journey";
-import { TRACK_VH } from "../../config/motion";
 
 /**
- * A chamber of the instrument: a scroll segment sized to its share of the
- * journey, with a sticky full-viewport stage for its placards. Real DOM in
+ * A chamber of the instrument: a normal-flow section with a full-viewport
+ * stage for its placards — the page scrolls continuously, never pausing.
+ * The Core alone keeps a modest pinned dwell (its light→dark→light
+ * transformation is the one moment that earns a hold). Real DOM in
  * document order — the narrative reads top-to-bottom for assistive tech.
  */
 export function ChamberSection({
@@ -21,17 +22,16 @@ export function ChamberSection({
   align?: "start" | "center" | "end" | "stretch";
 }) {
   const def = CHAMBERS[CHAMBER_INDEX_BY_ID[id]];
-  const heightVh = (def.share / 100) * TRACK_VH;
   const stageStyle: CSSProperties = {
     justifyItems: justify,
     alignItems: align,
   };
+  const pinned = id === "core";
   return (
     <section
       id={`chamber-${id}`}
       data-chamber={id}
-      className="lumen-chamber"
-      style={{ height: `${heightVh}vh` }}
+      className={pinned ? "lumen-chamber lumen-chamber-pin" : "lumen-chamber"}
       aria-label={`${def.title} — ${def.emotion}`}
     >
       <div className="lumen-stage" data-stage={id} style={stageStyle}>

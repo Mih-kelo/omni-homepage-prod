@@ -57,7 +57,7 @@ export function Paradox() {
           <ProductCard data={COPY.paradox.bestseller} gold delay={0.1} />
           <span
             aria-hidden="true"
-            style={{ font: "italic 400 26px var(--lx-serif)", color: "var(--lx-ink-faint)" }}
+            style={{ font: "500 24px var(--lx-serif)", color: "var(--lx-ink-faint)" }}
           >
             vs
           </span>

@@ -48,6 +48,3 @@ export const TIMING = {
   breathFullMs: 2_600,
   breathRepeatMs: 600,
 } as const;
-
-/** total scroll track height, in viewport-heights (chamber shares slice this) */
-export const TRACK_VH = 1400;

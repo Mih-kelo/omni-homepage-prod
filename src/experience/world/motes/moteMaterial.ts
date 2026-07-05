@@ -47,6 +47,13 @@ const vertex = /* glsl */ `
     // faint: low base alpha, fading with distance, never looming in the face
     vAlpha = (0.05 + aSeed.w * 0.12) * smoothstep(170.0, 60.0, dist);
     vAlpha *= smoothstep(0.6, 3.0, dist);
+
+    // gentle twinkle — a slow per-star luminance shimmer (period 4–9 s,
+    // depth ±25–35%): a calm breathing of the field, never a blink
+    float twPeriod = 4.0 + aSeed.x * 5.0;
+    float tw = sin(uTime * TAU / twPeriod + aSeed.w * TAU);
+    vAlpha *= 1.0 + (0.25 + aSeed.y * 0.10) * tw;
+
     vAlpha = mix(vAlpha, 0.72, grip); // assembled motes briefly read as ink
   }
 `;

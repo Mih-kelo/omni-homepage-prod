@@ -3,11 +3,12 @@ import { ClientOnly } from "./lib/client";
 import { useMode } from "./lib/a11y/modeStore";
 import { PresenceTracker } from "./lib/presence/PresenceTracker";
 import { JourneyScroll } from "./lib/journey/JourneyScroll";
-import { StoryTimeline } from "./ui/timeline/StoryTimeline";
+import { StoryPath } from "./ui/timeline/StoryPath";
 import { FirstBreath } from "./ui/chrome/FirstBreath";
 import { Colophon } from "./ui/chrome/Colophon";
 import { DebugHud } from "./ui/chrome/DebugHud";
 import { InstrumentPanel } from "./ui/panel/InstrumentPanel";
+import { TopBar } from "./ui/nav/TopBar";
 import { StillEdition } from "./still/StillEdition";
 import { Threshold } from "./chambers/Threshold";
 import { Listening } from "./chambers/Listening";
@@ -55,7 +56,7 @@ export function LumenExperience() {
           </Suspense>
         )}
         <JourneyScroll rootRef={rootRef} trackRef={trackRef} />
-        {mode === "cinematic" && <StoryTimeline />}
+        {mode === "cinematic" && <StoryPath />}
       </ClientOnly>
       <main className="lumen-track" ref={trackRef}>
         <Threshold />
@@ -68,6 +69,7 @@ export function LumenExperience() {
         <Invitation />
       </main>
       <Colophon />
+      <TopBar />
       <InstrumentPanel />
       <DebugHud />
     </div>

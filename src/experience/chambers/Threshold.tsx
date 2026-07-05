@@ -1,6 +1,7 @@
 import { ChamberSection } from "../ui/placards/ChamberSection";
 import { WallText } from "../ui/placards/WallText";
 import { Reveal } from "../ui/placards/Reveal";
+import { HeroIntelligence } from "../ui/hero/HeroIntelligence";
 import { ThresholdLabels } from "./ThresholdLabels";
 import { APP_URL, COPY } from "../config/copy";
 
@@ -36,8 +37,8 @@ export function Threshold() {
             </div>
           </Reveal>
         </div>
-        {/* right column intentionally open — the world's light lives here */}
-        <div aria-hidden="true" />
+        {/* right column — the living intelligence lattice */}
+        <HeroIntelligence />
       </div>
     </ChamberSection>
   );

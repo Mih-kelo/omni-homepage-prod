@@ -37,9 +37,9 @@
   --color-paper: var(--paper);
   --color-terminal: var(--terminal-bg);
 
-  --font-sans: "Epilogue", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-serif: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
 :root {
@@ -241,9 +241,12 @@
   --lx-hairline: rgba(23, 23, 28, 0.14);
   --lx-accent: #3730a3;
 
-  --lx-serif: "Playfair Display", Georgia, serif;
-  --lx-mono: "JetBrains Mono", ui-monospace, monospace;
-  --lx-grotesk: "Epilogue", system-ui, sans-serif;
+  /* unified type system: Geist for display + body + UI, Geist Mono for
+     microlabels/data. --lx-serif keeps its name (display voice) so the
+     token contract with existing chambers is unchanged. */
+  --lx-serif: "Geist", system-ui, sans-serif;
+  --lx-mono: "Geist Mono", ui-monospace, monospace;
+  --lx-grotesk: "Geist", system-ui, sans-serif;
 
   background-color: var(--lx-bg);
   color: var(--lx-ink);
@@ -268,14 +271,14 @@
 }
 .lumen-track { position: relative; z-index: 1; }
 
-/* a chamber section: its height is its scroll share; the stage pins */
+/* a chamber section: normal document flow — the page never pauses.
+   Only the Core keeps a modest pinned dwell (.lumen-chamber-pin): its
+   light→dark→light transformation is the one hold that earns it. */
 .lumen-chamber { position: relative; }
 .lumen-stage {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   align-items: center;
   /* narrow gutters — content uses the full width, not a centered column */
@@ -284,6 +287,14 @@
   pointer-events: none;
 }
 .lumen-stage > * { pointer-events: auto; }
+.lumen-chamber-pin { height: 220vh; height: 220svh; }
+.lumen-chamber-pin .lumen-stage {
+  position: sticky;
+  top: 0;
+  min-height: 0;
+  height: 100vh;
+  height: 100svh;
+}
 /* full-bleed inner: spans the viewport so content anchors to the edges */
 .lx-bleed { width: 100%; }
 /* editorial split: headline one side, supporting content the other */
@@ -299,100 +310,8 @@
   .lx-split { grid-template-columns: 1fr; gap: 32px; }
 }
 
-/* ---- the story timeline: one continuous vertical pathway, the signature
-   element. Neutral and quiet; only a subtle indigo marks progress. Every
-   colour is a graded token so the rail stays legible through the dark
-   passages without ever glowing. ---- */
-.lx-timeline {
-  position: fixed;
-  left: clamp(14px, 2.4vw, 40px);
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-  width: 44px;
-  z-index: 4;
-  pointer-events: none;
-}
-.lx-timeline-rail {
-  position: absolute;
-  left: 6px;
-  top: 13vh;
-  bottom: 13vh;
-  width: 1px;
-  background: var(--lx-hairline);
-}
-.lx-timeline-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  transform-origin: top center;
-  transform: scaleY(0);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--lx-accent) 85%, transparent),
-    color-mix(in srgb, var(--lx-accent) 42%, transparent)
-  );
-  will-change: transform;
-}
-.lx-timeline-spark {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 3px;
-  height: 3px;
-  transform: translate(-50%, -50%);
-  border-radius: 999px;
-  background: var(--lx-accent);
-  opacity: 0;
-  will-change: top, opacity;
-}
-.lx-timeline-node {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 7px;
-  height: 7px;
-  transform: translate(-50%, -50%);
-  border-radius: 999px;
-  border: 1px solid var(--lx-hairline);
-  background: var(--lx-bg);
-  transition:
-    background 450ms ease,
-    border-color 450ms ease,
-    width 350ms ease,
-    height 350ms ease;
-}
-.lx-timeline-node[data-state="past"] {
-  border-color: transparent;
-  background: color-mix(in srgb, var(--lx-accent) 55%, var(--lx-bg));
-}
-.lx-timeline-node[data-state="active"] {
-  width: 11px;
-  height: 11px;
-  border-color: transparent;
-  background: var(--lx-accent);
-}
-.lx-timeline-node[data-state="active"]::after {
-  content: "";
-  position: absolute;
-  inset: -5px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--lx-accent) 45%, transparent);
-  animation: lx-node-pulse 2.8s ease-in-out infinite;
-}
-@keyframes lx-node-pulse {
-  0%, 100% { transform: scale(0.7); opacity: 0.55; }
-  50% { transform: scale(1.18); opacity: 0; }
-}
-@media (max-width: 900px) {
-  .lx-timeline { left: 8px; width: 22px; }
-  .lx-timeline-rail { left: 4px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .lx-timeline-node[data-state="active"]::after { animation: none; }
-}
+/* the story path (the drawn brush stroke) styles itself:
+   src/experience/ui/timeline/timeline.css */
 
 /* ---- typography voices ----
    text carries a soft halo in the page's own background colour: invisible
@@ -400,10 +319,10 @@
    so content is always the highest visual priority (no scrim box needed). */
 .lx-wall {
   font-family: var(--lx-serif);
-  font-weight: 900;
-  font-size: clamp(38px, 6vw, 92px);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: clamp(36px, 5.7vw, 86px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   color: var(--lx-ink);
   text-wrap: balance;
   max-width: 15ch;
@@ -412,13 +331,15 @@
     0 0 22px var(--lx-bg),
     0 0 44px var(--lx-bg);
 }
-.lx-wall-sm { font-size: clamp(28px, 3.8vw, 50px); max-width: 20ch; }
+.lx-wall-sm { font-size: clamp(27px, 3.6vw, 47px); max-width: 21ch; letter-spacing: -0.032em; }
+/* the curator voice: was literary italic — Geist carries it as a measured,
+   medium-weight aside instead (no italic face; weight + tone do the work) */
 .lx-curator {
   font-family: var(--lx-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(18px, 2vw, 24px);
-  line-height: 1.5;
+  font-weight: 500;
+  font-size: clamp(17px, 1.9vw, 22px);
+  line-height: 1.55;
+  letter-spacing: -0.011em;
   color: var(--lx-ink-soft);
   max-width: 40ch;
   text-shadow: 0 0 18px var(--lx-bg);
@@ -434,14 +355,24 @@
 .lx-mono-accent { color: var(--lx-accent); }
 .lx-numeral {
   font-family: var(--lx-serif);
-  font-weight: 900;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 /* the reveal mask for wall-text lines (Framer animates the inner span) */
 .lx-maskline { display: block; overflow: hidden; }
 .lx-maskline > span { display: block; will-change: transform; }
+
+/* the thread writes the story: characters ink in sync with the story
+   path's tip (ui/placards/WallText + lib/journey/writing) */
+.lx-wline { display: block; }
+.lx-word { display: inline-block; }
+.lx-char { opacity: 0; transition: opacity 90ms linear; }
+.lx-char[data-on] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .lumen .lx-char { opacity: 1; transition: none; }
+}
 
 /* ---- paper placard ---- */
 .lx-placard {
@@ -475,11 +406,12 @@
 }
 .lx-panel-word {
   font-family: var(--lx-serif);
-  font-weight: 900;
-  font-size: 15px;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.18em;
   color: var(--lx-ink);
   text-decoration: none;
+  white-space: nowrap;
 }
 .lx-thread {
   position: relative;
@@ -522,37 +454,7 @@
   white-space: nowrap;
 }
 
-/* chamber index (unfolds above the panel) */
-.lx-index {
-  position: fixed;
-  left: 50%;
-  bottom: 84px;
-  transform: translateX(-50%);
-  z-index: 39;
-  border: 1px solid var(--lx-hairline);
-  background: color-mix(in srgb, var(--lx-bg) 82%, transparent);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  padding: 14px 18px;
-  display: grid;
-  gap: 2px;
-  min-width: 260px;
-}
-.lx-index a {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 7px 4px;
-  font-family: var(--lx-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--lx-ink-soft);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-.lx-index a:hover { color: var(--lx-accent); }
-.lx-index a[aria-current="true"] { color: var(--lx-accent); }
+/* (the chamber index moved to the top bar — see ui/nav/nav.css) */
 
 /* ---- first breath ---- */
 .lx-breath {
@@ -565,9 +467,9 @@
 }
 .lx-breath-word {
   font-family: var(--lx-serif);
-  font-weight: 900;
-  font-size: clamp(22px, 3vw, 34px);
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  font-size: clamp(20px, 2.7vw, 30px);
+  letter-spacing: 0.28em;
   color: var(--lx-graphite);
 }
 
@@ -678,7 +580,7 @@ body:has(.lumen) { background-color: #fafaf8; }
   padding: 22px 24px;
   min-width: min(300px, 80vw);
 }
-.lx-card-title { font-family: var(--lx-serif); font-weight: 700; font-size: 24px; margin: 10px 0 14px; }
+.lx-card-title { font-family: var(--lx-serif); font-weight: 600; font-size: 21px; letter-spacing: -0.02em; margin: 10px 0 14px; }
 .lx-row {
   display: flex;
   justify-content: space-between;
@@ -738,84 +640,187 @@ body:has(.lumen) { background-color: #fafaf8; }
   background: color-mix(in srgb, var(--lx-bg) 40%, transparent);
 }
 
-/* pricing plates — glass in an archive drawer */
+/* ---- pricing plates — the offer as a quiet gallery of four ----
+   Consistent anatomy top→bottom: name / price+period / desc / hairline /
+   features / CTA. The recommended plate is genuinely elevated (lift, wash,
+   accent) without ever shouting. All colours are graded tokens. */
 .lx-plates {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 16px;
-  width: min(1240px, 100%);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
+  align-items: stretch;
+  width: min(1180px, 100%);
+  margin-top: clamp(6px, 1.6vh, 18px);
 }
 .lx-plate {
   position: relative;
-  border: 1px solid var(--lx-hairline);
-  background: color-mix(in srgb, var(--lx-bg) 92%, transparent);
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  text-align: left;
+  padding: clamp(22px, 2.2vw, 28px) clamp(20px, 1.9vw, 26px) clamp(20px, 2vw, 24px);
+  border: 1px solid var(--lx-hairline);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--lx-bg) 94%, transparent);
+  transition:
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    background-color 320ms ease;
 }
-.lx-plate[data-featured="true"] { border-color: var(--lx-accent); }
-.lx-plate-name { font-family: var(--lx-grotesk); font-weight: 600; font-size: 15px; }
-.lx-plate-price { font-family: var(--lx-serif); font-weight: 900; font-size: 42px; color: var(--lx-accent); line-height: 1; margin-top: 12px; }
-.lx-plate-period { font-family: var(--lx-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--lx-ink-faint); text-transform: uppercase; }
-.lx-plate-desc { font-size: 13px; line-height: 1.55; color: var(--lx-ink-soft); margin: 12px 0 0; }
-.lx-plate-features { list-style: none; margin: 12px 0 0; padding: 0; }
-.lx-plate-features li {
-  font-size: 12.5px;
+.lx-plate:hover {
+  border-color: color-mix(in srgb, var(--lx-accent) 42%, var(--lx-hairline));
+  box-shadow: 0 30px 60px -44px color-mix(in srgb, var(--lx-ink) 42%, transparent);
+}
+.lx-plate[data-featured="true"] {
+  border-color: color-mix(in srgb, var(--lx-accent) 55%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--lx-accent) 5%, transparent), transparent 46%),
+    color-mix(in srgb, var(--lx-bg) 96%, transparent);
+  box-shadow: 0 34px 68px -48px color-mix(in srgb, var(--lx-indigo-deep) 55%, transparent);
+}
+.lx-plate[data-featured="true"]:hover {
+  border-color: color-mix(in srgb, var(--lx-accent) 75%, transparent);
+  box-shadow: 0 38px 72px -46px color-mix(in srgb, var(--lx-indigo-deep) 62%, transparent);
+}
+.lx-plate-name {
+  font-family: var(--lx-grotesk);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--lx-ink-soft);
-  padding: 5px 0 5px 16px;
-  position: relative;
 }
-.lx-plate-features li::before { content: "—"; position: absolute; left: 0; color: var(--lx-accent); }
-.lx-plate-cta {
-  margin-top: auto;
-  padding-top: 16px;
+.lx-plate[data-featured="true"] .lx-plate-name { color: var(--lx-accent); }
+.lx-plate-pricerow { display: flex; align-items: baseline; gap: 8px; }
+.lx-plate-price {
+  font-family: var(--lx-serif);
+  font-weight: 600;
+  font-size: clamp(34px, 2.9vw, 42px);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--lx-ink);
+  line-height: 1.05;
+  display: inline-block;
+  margin-top: 16px;
 }
+.lx-plate[data-featured="true"] .lx-plate-price { color: var(--lx-accent); }
+.lx-plate-period {
+  font-family: var(--lx-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--lx-ink-faint);
+  text-transform: uppercase;
+}
+.lx-plate-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--lx-ink-soft);
+  margin: 12px 0 0;
+}
+.lx-plate-rule {
+  display: block;
+  height: 1px;
+  background: var(--lx-hairline);
+  margin-top: 18px;
+}
+.lx-plate-features { list-style: none; margin: 6px 0 0; padding: 0; }
+.lx-plate-features li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--lx-ink-soft);
+  padding: 8px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--lx-hairline) 55%, transparent);
+}
+.lx-plate-features li:last-child { border-bottom: none; }
+.lx-plate-features li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--lx-accent);
+  flex-shrink: 0;
+  transform: translateY(-1px);
+}
+.lx-plate-cta { margin-top: auto; padding-top: 20px; }
 .lx-plate-cta a {
   display: inline-flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  padding: 11px 0;
-  border-radius: 8px;
+  min-height: 42px;
+  border-radius: 10px;
   font-size: 13.5px;
   font-weight: 500;
+  letter-spacing: 0.01em;
   text-decoration: none;
   border: 1px solid var(--lx-hairline);
   color: var(--lx-ink);
+  background: transparent;
+  transition:
+    border-color 260ms ease,
+    background-color 260ms ease,
+    color 260ms ease;
 }
-.lx-plate[data-featured="true"] .lx-plate-cta a { background: var(--lx-accent); border-color: var(--lx-accent); color: #fff; }
+.lx-plate-cta a:hover {
+  border-color: var(--lx-accent);
+  color: var(--lx-accent);
+  background: color-mix(in srgb, var(--lx-accent) 6%, transparent);
+}
+.lx-plate[data-featured="true"] .lx-plate-cta a {
+  background: var(--lx-accent);
+  border-color: var(--lx-accent);
+  color: #fff;
+}
+.lx-plate[data-featured="true"] .lx-plate-cta a:hover {
+  background: color-mix(in srgb, var(--lx-accent) 85%, var(--lx-ink));
+  border-color: color-mix(in srgb, var(--lx-accent) 85%, var(--lx-ink));
+  color: #fff;
+}
 .lx-plate-flag {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 18px;
+  right: 18px;
   font-family: var(--lx-mono);
   font-size: 9px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--lx-accent);
-  border: 1px solid color-mix(in srgb, var(--lx-accent) 40%, transparent);
-  border-radius: 6px;
-  padding: 3px 8px;
+  background: color-mix(in srgb, var(--lx-accent) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lx-accent) 32%, transparent);
+  border-radius: 999px;
+  padding: 4px 10px;
 }
 .lx-billing {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--lx-ink-faint);
-  max-width: 64ch;
-  line-height: 1.6;
+  max-width: 66ch;
+  line-height: 1.65;
+  margin: 0;
+}
+/* desktop rhythm: descriptions reserve equal height so hairlines align */
+@media (min-width: 1101px) {
+  .lx-plate-desc { min-height: 4.8em; }
+}
+@media (max-width: 1100px) {
+  .lx-plates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .lx-plates { grid-template-columns: 1fr; }
 }
 
 /* numerals wall (the range) */
-.lx-bignum { font-family: var(--lx-serif); font-weight: 900; font-size: clamp(56px, 9vw, 130px); line-height: 1; color: var(--lx-ink); font-variant-numeric: tabular-nums; }
+.lx-bignum { font-family: var(--lx-serif); font-weight: 700; font-size: clamp(52px, 8.5vw, 122px); letter-spacing: -0.035em; line-height: 1; color: var(--lx-ink); font-variant-numeric: tabular-nums; }
 
 /* ---- LUMEN small screens: reframed, never hidden ---- */
 @media (max-width: 640px) {
-  .lx-panel { gap: 10px; padding: 8px 10px 8px 14px; }
-  .lx-panel-word { font-size: 13px; letter-spacing: 0.1em; }
+  .lx-panel { gap: 8px; padding: 8px 8px 8px 12px; }
+  .lx-panel-word { font-size: 10px; letter-spacing: 0.12em; }
   .lx-thread { display: none; }
   .lx-cta { padding: 9px 14px !important; font-size: 10px; }
   .lumen-stage { padding-inline: clamp(20px, 7vw, 48px); align-items: end; padding-bottom: 16vh; }
   .lx-wall { font-size: clamp(30px, 9vw, 44px); }
   .lx-bignum { font-size: clamp(48px, 16vw, 80px); }
-  .lx-index { min-width: 82vw; }
   .lx-card { min-width: 0; width: 100%; }
 }

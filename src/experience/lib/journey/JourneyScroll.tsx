@@ -2,7 +2,8 @@ import { useLayoutEffect, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useJourney } from "./journeyStore";
-import { chamberAt, gradeAt } from "./math";
+import { chamberAt, gradeAt, clamp01 } from "./math";
+import { CHAMBERS } from "../../config/journey";
 import { PALETTE, INK_ALPHA, mixHex, rgbaFromHex } from "../../config/palette";
 
 /**
@@ -44,18 +45,48 @@ export function JourneyScroll({
       s.setProperty("--lx-hairline", rgbaFromHex(inkHex, INK_ALPHA.hairline));
     };
 
+    // MEASURED bands: each chamber's end as a fraction of the scrollable
+    // track — a chamber is "current" while it crosses the viewport centre.
+    // Sections flow at natural height now, so shares can't predict this;
+    // we read the real DOM on every refresh (resize, font load, reflow).
+    const measureBands = (self: ScrollTrigger) => {
+      const span = Math.max(1, self.end - self.start);
+      const mid = window.innerHeight / 2;
+      const scrollY = window.scrollY;
+      const bands: number[] = [];
+      let prev = 0;
+      for (let i = 0; i < CHAMBERS.length; i++) {
+        const el = document.getElementById(`chamber-${CHAMBERS[i].id}`);
+        if (!el) return; // DOM not ready — keep current bands
+        const bottom = el.getBoundingClientRect().bottom + scrollY;
+        const p = i === CHAMBERS.length - 1 ? 1 : clamp01((bottom - mid - self.start) / span);
+        prev = Math.min(1, Math.max(p, prev + 0.001));
+        bands.push(prev);
+      }
+      bands[bands.length - 1] = 1;
+      useJourney.getState().setBands(bands);
+    };
+
+    const write = (self: ScrollTrigger) => {
+      const p = self.progress;
+      const { index, local } = chamberAt(p);
+      const grade = gradeAt(p);
+      useJourney.getState().setScroll(p, self.getVelocity(), index, local, grade);
+      applyGrade(grade);
+    };
+
     const master = ScrollTrigger.create({
       trigger: track,
       start: "top top",
       end: "bottom bottom",
-      onUpdate: (self) => {
-        const p = self.progress;
-        const { index, local } = chamberAt(p);
-        const grade = gradeAt(p);
-        useJourney.getState().setScroll(p, self.getVelocity(), index, local, grade);
-        applyGrade(grade);
+      onRefresh: (self) => {
+        measureBands(self);
+        write(self);
       },
+      onUpdate: write,
     });
+
+    measureBands(master);
 
     // dwell bookkeeping for the Observatory's memory traces
     const dwell = window.setInterval(() => {

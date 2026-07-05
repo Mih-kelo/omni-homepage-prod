@@ -1,0 +1,75 @@
+/* ---- the story path: a continuous brush stroke drawn by the visitor's
+   scroll — the signature of the page. Sits behind the content (the track
+   is z-index 1) but above the world canvas. Every colour is a graded
+   --lx-* token so the stroke stays legible through the dark passages.
+   Quiet by design: no glow, no filters. ---- */
+
+.lx-storypath {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* the stroke: hand-drawn weight, round caps — dashoffset (set per frame
+   from the journey store) reveals it up to the pen tip and no further */
+.lx-storypath-stroke {
+  fill: none;
+  stroke: var(--lx-accent);
+  stroke-opacity: 0.42;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* the pen tip — a hair brighter than the stroke, never glowing */
+.lx-storypath-tip {
+  fill: var(--lx-accent);
+  opacity: 0.85;
+}
+
+/* nodes: destinations only hinted before the tip arrives (faint hollow
+   dots — no line ever exists ahead); they ink in once the tip passes */
+.lx-storypath-node {
+  fill: var(--lx-bg);
+  stroke: var(--lx-hairline);
+  stroke-width: 1px;
+  transition:
+    fill 450ms ease,
+    stroke 450ms ease;
+}
+.lx-storypath-node[data-state="past"] {
+  fill: color-mix(in srgb, var(--lx-accent) 70%, var(--lx-bg));
+  stroke: transparent;
+}
+.lx-storypath-node[data-state="active"] {
+  fill: var(--lx-accent);
+  stroke: transparent;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lx-storypath-breathe 3.2s ease-in-out infinite;
+}
+@keyframes lx-storypath-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+@media (max-width: 900px) {
+  .lx-storypath-stroke {
+    stroke-width: 1.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-storypath-node[data-state="active"] {
+    animation: none;
+  }
+}

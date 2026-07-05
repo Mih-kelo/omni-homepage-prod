@@ -1,0 +1,146 @@
+/* ============================================================
+   LUMEN top bar — fixed navigation, the instrument panel's twin.
+   Mirrors the .lx-panel material exactly (hairline, pill radius,
+   graded-glass background, blur) so top and bottom chrome read
+   as one system. Every colour is a live-graded token: the bar
+   stays legible through the journey's dark passages.
+   z-order: bar 40 (with the panel), index popover 39, both below
+   the First Breath overlay (60).
+   ============================================================ */
+
+.lx-topbar-root {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  left: 50%;
+  z-index: 40;
+  width: min(92vw, 760px);
+  /* horizontal centering via Framer x: -50%; this is the SSR fallback */
+  transform: translateX(-50%);
+}
+
+.lx-topbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 8px 8px 8px 20px;
+  border: 1px solid var(--lx-hairline);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--lx-bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  backdrop-filter: blur(14px) saturate(1.1);
+  color: var(--lx-ink);
+}
+
+.lx-topbar-word {
+  font-family: var(--lx-serif);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--lx-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.lx-topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lx-topbar-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--lx-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lx-ink-faint);
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition:
+    color 220ms ease,
+    background-color 220ms ease;
+}
+.lx-topbar-trigger:hover { color: var(--lx-accent); }
+.lx-topbar-trigger[aria-expanded="true"] {
+  color: var(--lx-accent);
+  background: color-mix(in srgb, var(--lx-accent) 8%, transparent);
+}
+.lx-topbar-caret {
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform 240ms ease;
+}
+.lx-topbar-trigger[aria-expanded="true"] .lx-topbar-caret {
+  transform: rotate(225deg) translate(1px, 1px);
+}
+
+/* section index — unfolds beneath the bar, anchored to its right edge */
+.lx-topbar-index {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 8px;
+  z-index: 39;
+  width: min(320px, calc(100vw - 32px));
+  transform-origin: top right;
+  border: 1px solid var(--lx-hairline);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--lx-bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  backdrop-filter: blur(16px) saturate(1.1);
+  padding: 10px;
+  display: grid;
+  gap: 2px;
+}
+.lx-topbar-index a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  font-family: var(--lx-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lx-ink-soft);
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease;
+}
+.lx-topbar-index a:hover {
+  color: var(--lx-accent);
+  background: color-mix(in srgb, var(--lx-accent) 6%, transparent);
+}
+.lx-topbar-index a[aria-current="true"] { color: var(--lx-accent); }
+.lx-topbar-index a > span:last-child {
+  color: var(--lx-ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.lx-topbar-index a:hover > span:last-child,
+.lx-topbar-index a[aria-current="true"] > span:last-child { color: inherit; }
+
+/* small screens: compact, never squashed; CTA keeps a ≥44px target */
+@media (max-width: 640px) {
+  .lx-topbar-root { top: max(10px, env(safe-area-inset-top)); }
+  .lx-topbar { gap: 8px; padding: 5px 5px 5px 14px; }
+  .lx-topbar-word { font-size: 11px; letter-spacing: 0.14em; }
+  .lx-topbar-trigger { padding: 12px 10px; }
+  .lx-topbar .lx-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .lx-topbar-index { right: 5px; }
+}
