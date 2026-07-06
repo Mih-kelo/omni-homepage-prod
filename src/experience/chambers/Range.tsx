@@ -35,18 +35,22 @@ export function Range() {
             <p className="lx-lede">{COPY.range.context}</p>
           </Reveal>
         </div>
-        <div style={{ display: "grid", gap: 34, textAlign: "right", justifyItems: "end" }}>
+        <div className="lx-metrics">
           <Reveal delay={0.1}>
-            <div className="lx-bignum" style={{ color: "var(--lx-accent)" }}>
-              {roas}
+            <div className="lx-metric">
+              <div className="lx-bignum" style={{ color: "var(--lx-accent)" }}>
+                {roas}
+              </div>
+              <span className="lx-mono">{COPY.range.roas.label}</span>
+              <p className="lx-bignote">{COPY.range.roas.note}</p>
             </div>
-            <span className="lx-mono">{COPY.range.roas.label}</span>
-            <p className="lx-bignote">{COPY.range.roas.note}</p>
           </Reveal>
           <Reveal delay={0.24}>
-            <div className="lx-bignum">{ftb}</div>
-            <span className="lx-mono">{COPY.range.firstTime.label}</span>
-            <p className="lx-bignote">{COPY.range.firstTime.note}</p>
+            <div className="lx-metric">
+              <div className="lx-bignum">{ftb}</div>
+              <span className="lx-mono">{COPY.range.firstTime.label}</span>
+              <p className="lx-bignote">{COPY.range.firstTime.note}</p>
+            </div>
           </Reveal>
         </div>
       </div>

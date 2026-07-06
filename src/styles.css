@@ -315,13 +315,28 @@
   pointer-events: none;
 }
 .lumen-stage > * { pointer-events: auto; }
-/* arrival and climax keep the full frame (desktop only — phones flow at
-   natural height, see the small-screens block) */
+/* arrival keeps the full frame beyond phones; the pricing climax only
+   earns it on true desktop — tablets flow straight through it */
 @media (min-width: 641px) {
-  #chamber-threshold .lumen-stage,
+  #chamber-threshold .lumen-stage {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+}
+@media (min-width: 1181px) {
   #chamber-invitation .lumen-stage {
     min-height: 100vh;
     min-height: 100svh;
+  }
+}
+/* tablets are their own frame, not a scaled desktop: splits stack (or
+   narrow) here, so sections are content-tall — stages flow at natural
+   height with an editorial band of air instead of viewport-tall voids */
+@media (min-width: 641px) and (max-width: 1180px) {
+  .lumen-stage {
+    min-height: 0;
+    padding-block: clamp(64px, 8vh, 104px);
+    padding-inline: clamp(32px, 5.5vw, 72px);
   }
 }
 /* the Core's dwell: brief — enough for the spotlight to bloom and the
@@ -346,7 +361,8 @@
 }
 .lx-split-top { align-items: start; }
 @media (max-width: 900px) {
-  .lx-split { grid-template-columns: 1fr; gap: 32px; }
+  /* stacked: phones keep a tight 32px seam, tablets breathe a little */
+  .lx-split { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 44px); }
 }
 
 /* the story path (the drawn brush stroke) styles itself:
@@ -649,6 +665,15 @@ body:has(.lumen) { background-color: #fafaf8; }
   line-height: 1.6;
   color: var(--lx-ink-soft);
 }
+/* the range figures: a right-aligned rail on wide screens; the
+   small-screens block reflows it into an open left-aligned ledger */
+.lx-metrics {
+  display: grid;
+  gap: 34px;
+  justify-items: end;
+  text-align: right;
+}
+.lx-metric .lx-mono { display: block; margin-top: 6px; }
 
 /* checklist (what you get) */
 .lx-checks { list-style: none; margin: 0; padding: 0; max-width: 52ch; }
@@ -895,6 +920,16 @@ body:has(.lumen) { background-color: #fafaf8; }
   .lx-wall { font-size: clamp(30px, 9vw, 44px); }
   .lx-bignum { font-size: clamp(48px, 16vw, 80px); }
   .lx-card { min-width: 0; width: 100%; }
+  /* the range figures open up: left-aligned ledger rows, a hairline
+     above each, clear air between number, label and caption */
+  .lx-metrics { justify-items: stretch; text-align: left; gap: 26px; }
+  .lx-metric { border-top: 1px solid var(--lx-hairline); padding-top: 20px; }
+  .lx-metric .lx-mono { margin-top: 8px; }
+  .lx-metric .lx-bignote { margin: 10px 0 0; max-width: 32ch; }
+  /* brief.omnitarget: values hold the card's right edge even when the
+     longer lines (hooks, budgets) wrap */
+  .lx-row { gap: 14px; }
+  .lx-row dd { flex: 1; text-align: right; overflow-wrap: anywhere; }
 }
 
 /* ---- ultra-wide: the composition caps and centers; gutters widen ---- */
