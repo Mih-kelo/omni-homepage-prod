@@ -27,6 +27,9 @@ export function Invitation() {
         <WallText
           lines={[{ text: COPY.pricing.titleA }, { text: COPY.pricing.titleB, accent: true }]}
         />
+        <Reveal delay={0.12}>
+          <p className="lx-lede">{COPY.pricing.note}</p>
+        </Reveal>
         <PlateDrawer />
         <Reveal delay={0.2}>
           <a className="lx-cta-major" href={APP_URL} data-lens-cta>

@@ -33,6 +33,9 @@
 }
 
 .lx-topbar-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--lx-serif);
   font-weight: 600;
   font-size: 13px;
@@ -40,7 +43,10 @@
   color: var(--lx-ink);
   text-decoration: none;
   white-space: nowrap;
+  transition: color 220ms ease;
 }
+.lx-topbar-word:hover { color: var(--lx-accent); }
+.lx-topbar-word .lx-brandmark { width: 24px; height: 24px; }
 
 .lx-topbar-actions {
   margin-left: auto;
@@ -131,18 +137,21 @@
 .lx-topbar-index a:hover > span:last-child,
 .lx-topbar-index a[aria-current="true"] > span:last-child { color: inherit; }
 
-/* small screens: compact, never squashed; CTA keeps a ≥44px target */
+/* small screens: the bar loosens instead of cramming — wordmark and
+   trigger shrink, gaps tighten, the action keeps a ≥44px tap target */
 @media (max-width: 640px) {
   .lx-topbar-root { top: max(10px, env(safe-area-inset-top)); }
-  .lx-topbar { gap: 8px; padding: 5px 5px 5px 14px; }
-  .lx-topbar-word { font-size: 11px; letter-spacing: 0.14em; }
-  .lx-topbar-trigger { padding: 12px 10px; }
+  .lx-topbar { gap: 10px; padding: 6px 6px 6px 13px; }
+  .lx-topbar-word { font-size: 10.5px; letter-spacing: 0.13em; gap: 8px; }
+  .lx-topbar-word .lx-brandmark { width: 20px; height: 20px; }
+  .lx-topbar-actions { gap: 8px; }
+  .lx-topbar-trigger { font-size: 10px; padding: 8px 4px; }
   .lx-topbar .lx-cta {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
   }
-  .lx-topbar-index { right: 5px; }
+  .lx-topbar-index { left: 0; right: 0; width: auto; }
 }
 
 /* phones: the bar retires on scroll-down, returns on scroll-up (TopBar
@@ -163,12 +172,3 @@
   .lx-topbar { transition: none; }
 }
 
-/* small screens: the bar loosens instead of cramming — wordmark and
-   trigger shrink, gaps tighten, the action stays a full tap target */
-@media (max-width: 640px) {
-  .lx-topbar { gap: 10px; padding: 6px 6px 6px 13px; }
-  .lx-topbar-word { font-size: 10.5px; letter-spacing: 0.13em; }
-  .lx-topbar-actions { gap: 8px; }
-  .lx-topbar-trigger { font-size: 10px; padding: 8px 4px; }
-  .lx-topbar-index { left: 0; right: 0; width: auto; }
-}

@@ -23,7 +23,6 @@ export interface BriefRow {
 
 export const COPY = {
   badge: "Shopify store intelligence",
-  beta: "v1.0 · private beta",
 
   hero: {
     titleA: "Pre-Spend Intelligence for Shopify",
@@ -82,6 +81,23 @@ export const COPY = {
     },
     closing:
       "The product that converts your existing audience is rarely the one that earns you a new one.",
+  },
+
+  /* the Range chamber's supporting copy — added in the July 2026 polish
+     pass so the two figures carry their own context (the one place new
+     narrative copy was commissioned; everything else stays verbatim) */
+  range: {
+    eyebrow: "Proof before spend",
+    context:
+      "A pilot store's gateway product, sent at cold traffic and measured against the store's own baseline — the read you get before committing budget.",
+    roas: {
+      label: "Cold-traffic ROAS",
+      note: "Every $1 of cold-traffic spend returned $2.40 — from audiences who had never met the brand.",
+    },
+    firstTime: {
+      label: "First-time buyers",
+      note: "Nearly two of every three orders came from brand-new customers, not returning ones.",
+    },
   },
 
   whatYouGet: {
@@ -184,6 +200,7 @@ export const COPY = {
       },
     ],
     recommended: "Recommended",
+    note: "One credit is one complete Meta Ads brief. Buy a pack once and spend it at your pace — nothing renews in the background.",
     billing:
       "All charges are billed safely in USD via the official Shopify Billing API. Credits are subject to a 12-month dormancy policy.",
   },

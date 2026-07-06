@@ -303,16 +303,27 @@
 .lumen-chamber { position: relative; }
 .lumen-stage {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  /* a near-viewport frame, not a full one — beats sit closer together
+     so the story never idles across empty paper between sections */
+  min-height: 86vh;
+  min-height: 86svh;
   display: grid;
   align-items: center;
   /* narrow gutters — content uses the full width, not a centered column */
   padding-inline: clamp(20px, 4.5vw, 84px);
-  padding-block: clamp(80px, 12vh, 160px);
+  padding-block: clamp(72px, 9vh, 128px);
   pointer-events: none;
 }
 .lumen-stage > * { pointer-events: auto; }
+/* arrival and climax keep the full frame (desktop only — phones flow at
+   natural height, see the small-screens block) */
+@media (min-width: 641px) {
+  #chamber-threshold .lumen-stage,
+  #chamber-invitation .lumen-stage {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+}
 /* the Core's dwell: brief — enough for the spotlight to bloom and the
    placard to land, never long enough to stall the momentum */
 .lumen-chamber-pin { height: 150vh; height: 150svh; }
@@ -425,25 +436,61 @@
   padding: 10px 18px !important;
   text-decoration: none;
   white-space: nowrap;
+  transition: background-color 200ms ease;
 }
+.lx-cta:hover { background: color-mix(in srgb, var(--lx-accent) 84%, #16123f); }
 
 /* (the chamber index moved to the top bar — see ui/nav/nav.css) */
 
-/* ---- first breath ---- */
+/* ---- the brand coin — the mark ships on its own deep-navy ground, so
+   a circular crop turns it into a badge that sits on any surface ---- */
+.lx-brandmark {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  user-select: none;
+}
+
+/* ---- first breath — the overture opens inside the brand's indigo ---- */
 .lx-breath {
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: var(--lx-atelier);
+  background: radial-gradient(
+    120vw 90vh at 50% 42%,
+    #3b34a8 0%,
+    #2e2887 38%,
+    #1e1a56 72%,
+    #14112f 100%
+  );
   display: grid;
   place-items: center;
+}
+.lx-breath-lockup {
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+}
+/* the coin, ringed: a lavender hairline and a soft indigo bloom */
+.lx-breath-mark {
+  border-radius: 50%;
+  padding: 6px;
+  background: color-mix(in srgb, #9b9eff 12%, transparent);
+  box-shadow:
+    0 0 0 1px rgba(155, 158, 255, 0.32),
+    0 24px 80px rgba(10, 8, 40, 0.55),
+    0 0 72px rgba(99, 102, 241, 0.42);
+}
+.lx-breath-mark .lx-brandmark {
+  box-shadow: 0 0 0 1px rgba(155, 158, 255, 0.18);
 }
 .lx-breath-word {
   font-family: var(--lx-serif);
   font-weight: 600;
   font-size: clamp(20px, 2.7vw, 30px);
   letter-spacing: 0.28em;
-  color: var(--lx-graphite);
+  color: #f4f3ff;
 }
 
 /* ---- colophon ---- */
@@ -459,6 +506,14 @@
   flex-wrap: wrap;
   gap: 12px 36px;
   align-items: baseline;
+}
+.lx-colophon-brand { display: inline-flex; align-items: center; gap: 9px; }
+.lx-colophon-word {
+  font-family: var(--lx-serif);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--lx-ink);
 }
 .lx-colophon a { color: var(--lx-ink-faint); text-decoration: none; }
 .lx-colophon a:hover { color: var(--lx-accent); }
@@ -535,6 +590,15 @@ body:has(.lumen) { background-color: #fafaf8; }
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.01em;
+  transition:
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+.lx-cta-major:hover {
+  background: color-mix(in srgb, var(--lx-accent) 84%, #16123f);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--lx-accent) 26%, transparent);
+  transform: translateY(-1px);
 }
 .lx-cta-ghost {
   font-family: var(--lx-grotesk);
@@ -575,6 +639,14 @@ body:has(.lumen) { background-color: #fafaf8; }
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: var(--lx-ink-soft);
+}
+/* the quiet caption beneath each range figure — what the number means */
+.lx-bignote {
+  max-width: 36ch;
+  margin: 8px 0 0 auto;
+  font-size: 13.5px;
+  line-height: 1.6;
   color: var(--lx-ink-soft);
 }
 
@@ -814,6 +886,11 @@ body:has(.lumen) { background-color: #fafaf8; }
     min-height: 0;
     padding-inline: clamp(20px, 7vw, 48px);
     padding-block: 56px 48px;
+  }
+  /* the fixed bar floats above the page — the hero begins beneath it,
+     with clear air under the pill */
+  #chamber-threshold .lumen-stage {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 104px);
   }
   .lx-wall { font-size: clamp(30px, 9vw, 44px); }
   .lx-bignum { font-size: clamp(48px, 16vw, 80px); }

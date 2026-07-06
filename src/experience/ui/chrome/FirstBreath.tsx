@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { TIMING } from "../../config/motion";
 import { useJourney } from "../../lib/journey/journeyStore";
 import { useTier } from "../../lib/tiers/tierStore";
+import { BrandMark } from "./BrandMark";
 
 const BREATHED_KEY = "lumen-breathed";
 
@@ -85,18 +86,32 @@ export function FirstBreath() {
           aria-label="Omni Target is opening"
           exit={{ opacity: 0, transition: { duration: 0.6, ease: "easeOut" } }}
         >
-          <motion.div
-            className="lx-breath-word"
-            initial={{ filter: "blur(14px)", opacity: 0.35, letterSpacing: "0.34em" }}
-            animate={
-              phase === "condense"
-                ? { filter: "blur(0px)", opacity: 1, letterSpacing: "0.22em" }
-                : { filter: "blur(9px)", opacity: 0.7, letterSpacing: "0.28em" }
-            }
-            transition={{ duration: phase === "condense" ? 0.55 : 1.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            OMNI TARGET
-          </motion.div>
+          <div className="lx-breath-lockup">
+            <motion.div
+              className="lx-breath-mark"
+              initial={{ filter: "blur(10px)", opacity: 0.4, scale: 0.88 }}
+              animate={
+                phase === "condense"
+                  ? { filter: "blur(0px)", opacity: 1, scale: 1 }
+                  : { filter: "blur(6px)", opacity: 0.75, scale: 0.94 }
+              }
+              transition={{ duration: phase === "condense" ? 0.55 : 1.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <BrandMark size={76} />
+            </motion.div>
+            <motion.div
+              className="lx-breath-word"
+              initial={{ filter: "blur(14px)", opacity: 0.35, letterSpacing: "0.34em" }}
+              animate={
+                phase === "condense"
+                  ? { filter: "blur(0px)", opacity: 1, letterSpacing: "0.22em" }
+                  : { filter: "blur(9px)", opacity: 0.7, letterSpacing: "0.28em" }
+              }
+              transition={{ duration: phase === "condense" ? 0.55 : 1.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              OMNI TARGET
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

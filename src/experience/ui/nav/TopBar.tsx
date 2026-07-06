@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SPRING } from "../../config/motion";
 import { APP_URL, COPY } from "../../config/copy";
 import { useJourney } from "../../lib/journey/journeyStore";
+import { BrandMark } from "../chrome/BrandMark";
 import "./nav.css";
 
 /**
@@ -19,8 +20,8 @@ const SECTIONS: ReadonlyArray<{ id: string; label: string }> = [
   { id: "paradox", label: COPY.paradox.eyebrow },
   { id: "core", label: "The Core" },
   { id: "composition", label: COPY.whatYouGet.eyebrow },
-  { id: "range", label: COPY.whoItsFor.eyebrow },
-  { id: "observatory", label: "The Observatory" },
+  { id: "range", label: COPY.range.eyebrow },
+  { id: "observatory", label: COPY.whoItsFor.eyebrow },
   { id: "invitation", label: COPY.pricing.eyebrow },
 ];
 
@@ -125,7 +126,8 @@ export function TopBar() {
           aria-label="Omni Target — back to the top"
           onClick={toTop}
         >
-          OMNI TARGET
+          <BrandMark />
+          <span>OMNI TARGET</span>
         </a>
         <div className="lx-topbar-actions">
           <button

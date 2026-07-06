@@ -13,10 +13,7 @@ export function Threshold() {
       <div className="lx-bleed lx-split lx-split-top" style={{ alignItems: "center" }}>
         <div style={{ display: "grid", gap: 28 }}>
           <Reveal>
-            <div className="lx-eyebrow-row">
-              <span className="lx-badge">{COPY.badge}</span>
-              <span className="lx-mono">{COPY.beta}</span>
-            </div>
+            <span className="lx-badge">{COPY.badge}</span>
           </Reveal>
           <WallText
             as="h1"
