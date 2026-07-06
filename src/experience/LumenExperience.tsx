@@ -36,6 +36,57 @@ export function LumenExperience() {
     resolve();
   }, [resolve]);
 
+  // Zero-dependency desktop mousewheel smooth scroll engine
+  useEffect(() => {
+    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) return;
+
+    let targetY = window.scrollY;
+    let currentY = window.scrollY;
+    let isMoving = false;
+    const ease = 0.085;
+
+    const onWheel = (e: WheelEvent) => {
+      if (e.ctrlKey) return;
+      e.preventDefault();
+
+      targetY += e.deltaY;
+      targetY = Math.max(0, Math.min(targetY, document.documentElement.scrollHeight - window.innerHeight));
+
+      if (!isMoving) {
+        isMoving = true;
+        animate();
+      }
+    };
+
+    const animate = () => {
+      const diff = targetY - currentY;
+      if (Math.abs(diff) > 0.5) {
+        currentY += diff * ease;
+        window.scrollTo(0, currentY);
+        requestAnimationFrame(animate);
+      } else {
+        currentY = targetY;
+        window.scrollTo(0, currentY);
+        isMoving = false;
+      }
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+
+    const onScroll = () => {
+      if (!isMoving) {
+        targetY = window.scrollY;
+        currentY = window.scrollY;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   return (
     <div className="lumen" ref={rootRef}>
       <FirstBreath />
