@@ -111,6 +111,7 @@ function TermsPage() {
               .
             </p>
           </section>
+        </div>
       </main>
       <Footer />
     </div>
