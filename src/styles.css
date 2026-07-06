@@ -468,18 +468,22 @@
   user-select: none;
 }
 
-/* ---- first breath — the overture opens inside the brand's indigo ---- */
+/* ---- first breath — the overture opens inside the Core's own light:
+   the identical cool-paper + indigo-spotlight treatment the Intelligence
+   Engine passage wears (see .lx-spotlight), so the loading screen and the
+   journey's emphasis moments read as one system ---- */
 .lx-breath {
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: radial-gradient(
-    120vw 90vh at 50% 42%,
-    #3b34a8 0%,
-    #2e2887 38%,
-    #1e1a56 72%,
-    #14112f 100%
-  );
+  background:
+    radial-gradient(
+      ellipse 92vw 72vh at 50% 44%,
+      rgba(99, 102, 241, 0.16),
+      rgba(99, 102, 241, 0.05) 46%,
+      transparent 74%
+    ),
+    #eeecfa;
   display: grid;
   place-items: center;
 }
@@ -488,25 +492,25 @@
   justify-items: center;
   gap: 28px;
 }
-/* the coin, ringed: a lavender hairline and a soft indigo bloom */
+/* the coin, ringed: an indigo hairline and a soft bloom on light ground */
 .lx-breath-mark {
   border-radius: 50%;
   padding: 6px;
-  background: color-mix(in srgb, #9b9eff 12%, transparent);
+  background: color-mix(in srgb, #6366f1 8%, transparent);
   box-shadow:
-    0 0 0 1px rgba(155, 158, 255, 0.32),
-    0 24px 80px rgba(10, 8, 40, 0.55),
-    0 0 72px rgba(99, 102, 241, 0.42);
+    0 0 0 1px rgba(99, 102, 241, 0.3),
+    0 18px 50px rgba(55, 48, 163, 0.18),
+    0 0 64px rgba(99, 102, 241, 0.28);
 }
 .lx-breath-mark .lx-brandmark {
-  box-shadow: 0 0 0 1px rgba(155, 158, 255, 0.18);
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.16);
 }
 .lx-breath-word {
   font-family: var(--lx-serif);
   font-weight: 600;
   font-size: clamp(20px, 2.7vw, 30px);
   letter-spacing: 0.28em;
-  color: #f4f3ff;
+  color: var(--lx-graphite);
 }
 
 /* ---- colophon ---- */
