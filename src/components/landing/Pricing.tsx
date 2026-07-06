@@ -56,11 +56,8 @@ export function Pricing() {
   return (
     <section className="relative overflow-hidden border-t border-border bg-background">
       <div aria-hidden className="bg-grid absolute inset-0 opacity-60" />
-      <div className="relative mx-auto max-w-[1280px] px-6 py-28 lg:px-12 lg:py-36">
-        <div className="mb-16 max-w-[700px]">
-          <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--primary-light)]">
-            Simple Pricing
-          </div>
+      <div className="relative mx-auto max-w-7xl px-6 py-28 lg:px-12 lg:py-36">
+        <div className="mb-16 max-w-175">
           <h2
             className="font-serif font-black"
             style={{
@@ -71,7 +68,7 @@ export function Pricing() {
           >
             Flexible credit packs.
             <br />
-            <span className="text-[var(--primary-mid)]">No recurring subscriptions.</span>
+            <span className="text-primary-mid">No recurring subscriptions.</span>
           </h2>
         </div>
 
@@ -90,14 +87,14 @@ export function Pricing() {
               <div className="flex items-center justify-between">
                 <h3 className="text-[18px] font-medium text-white">{p.name}</h3>
                 {p.featured && (
-                  <span className="rounded-md border border-[var(--primary)]/40 bg-[var(--primary)]/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--primary-light)]">
+                  <span className="rounded-md border border-(--primary)/40 bg-(--primary)/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-primary-light">
                     Recommended
                   </span>
                 )}
               </div>
               <div className="mt-8 flex items-baseline gap-2">
                 <span
-                  className="font-serif font-black text-[var(--primary-mid)]"
+                  className="font-serif font-black text-primary-mid"
                   style={{ fontSize: 56, lineHeight: 1 }}
                 >
                   {p.price}
@@ -110,7 +107,7 @@ export function Pricing() {
                   {p.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-[14px] text-white/70">
                       <svg
-                        className="mt-0.5 shrink-0 text-[var(--primary)]"
+                        className="mt-0.5 shrink-0 text-primary"
                         width="16"
                         height="16"
                         viewBox="0 0 24 24"
@@ -131,7 +128,7 @@ export function Pricing() {
                 href="https://app.omnitarget.co/"
                 className={`mt-10 inline-flex items-center justify-center rounded-lg px-5 py-3 text-[15px] font-medium transition-colors ${
                   p.featured
-                    ? "bg-[var(--primary)] text-white hover:bg-[#7c33ee]"
+                    ? "bg-primary text-white hover:bg-[#7c33ee]"
                     : "border border-white/15 text-white hover:bg-white/5"
                 }`}
               >
@@ -142,7 +139,7 @@ export function Pricing() {
         </div>
 
         <div className="mt-12 flex justify-center text-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-white/5 bg-white/[0.02] px-5 py-2.5 text-[13px] text-white/60">
+          <div className="inline-flex items-center gap-3 rounded-full border border-white/5 bg-white/2 px-5 py-2.5 text-[13px] text-white/60">
             <svg
               width="14"
               height="14"
@@ -152,14 +149,15 @@ export function Pricing() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-[var(--primary-light)]"
+              className="text-primary-light"
             >
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="16" x2="12" y2="12" />
               <line x1="12" y1="8" x2="12.01" y2="8" />
             </svg>
             <span>
-              All charges are billed safely in USD via the official Shopify Billing API. Credits are subject to a 12-month dormancy policy.
+              All charges are billed safely in USD via the official Shopify Billing API. Credits are
+              subject to a 12-month dormancy policy.
             </span>
           </div>
         </div>
