@@ -214,10 +214,11 @@
 
 /* ============================================================
    LUMEN — The Clarity Engine (scoped tokens + primitives)
-   Light-first atelier world. Grade (0 light → 1 dark passage)
-   is written per frame by the journey conductor as --lumen-grade
-   plus pre-blended color vars; SSR defaults below are the light
-   state. Old routes (/privacy, /terms) are untouched.
+   Light-first atelier world. Grade (0 calm → 1 passage emphasis)
+   is written per frame by the journey conductor as --lumen-grade;
+   it tints the ground a whisper toward cool paper and raises the
+   indigo spotlight — never a full dark inversion. SSR defaults
+   below are the resting state. /privacy and /terms are untouched.
    ============================================================ */
 
 .lumen {
@@ -274,9 +275,31 @@
 }
 .lumen-track { position: relative; z-index: 1; }
 
+/* the passage spotlight: emphasis without inversion — a soft indigo
+   radiance that breathes up behind the active passage as the grade
+   rises (driven per-frame by the conductor; sits above the canvas,
+   below the content) */
+.lx-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 92vw 72vh at 50% 44%,
+    rgba(99, 102, 241, 0.16),
+    rgba(99, 102, 241, 0.05) 46%,
+    transparent 74%
+  );
+  transition: opacity 160ms linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-spotlight { transition: none; }
+}
+
 /* a chamber section: normal document flow — the page never pauses.
-   Only the Core keeps a modest pinned dwell (.lumen-chamber-pin): its
-   light→dark→light transformation is the one hold that earns it. */
+   Only the Core keeps a brief pinned dwell (.lumen-chamber-pin): its
+   spotlight passage is the one moment that earns a hold. */
 .lumen-chamber { position: relative; }
 .lumen-stage {
   position: relative;
@@ -290,7 +313,9 @@
   pointer-events: none;
 }
 .lumen-stage > * { pointer-events: auto; }
-.lumen-chamber-pin { height: 220vh; height: 220svh; }
+/* the Core's dwell: brief — enough for the spotlight to bloom and the
+   placard to land, never long enough to stall the momentum */
+.lumen-chamber-pin { height: 150vh; height: 150svh; }
 .lumen-chamber-pin .lumen-stage {
   position: sticky;
   top: 0;
@@ -783,11 +808,12 @@ body:has(.lumen) { background-color: #fafaf8; }
   .lx-cta { padding: 9px 14px !important; font-size: 10px; }
   /* cursor-presence microlabels have no cursor to answer on touch */
   .lx-threshold-labels { display: none; }
-  /* flow layout breathes on its own — no forced full-viewport sections */
+  /* connected storytelling: sections sit at natural height with tight,
+     even breathing room — no forced viewport-tall gaps between beats */
   .lumen-stage {
-    min-height: 82svh;
+    min-height: 0;
     padding-inline: clamp(20px, 7vw, 48px);
-    padding-block: 88px 64px;
+    padding-block: 56px 48px;
   }
   .lx-wall { font-size: clamp(30px, 9vw, 44px); }
   .lx-bignum { font-size: clamp(48px, 16vw, 80px); }
