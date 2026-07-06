@@ -27,10 +27,7 @@ function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-white/90">1. Introduction</h2>
             <p>
-              Welcome to Omni Target. We respect your privacy and are committed to protecting the
-              data of our merchants. This Privacy Policy explains how Omni Target (&quot;we&quot;,
-              &quot;our&quot;, or &quot;the App&quot;) collects, uses, and discloses information
-              when you install and use our application within your Shopify store environment.
+              Omni Target (&quot;we,&quot; &quot;our,&quot; or &quot;the App&quot;) provides AI-powered pre-spend intelligence to e-commerce merchants using Shopify. This Privacy Policy explains what data we access, how we store and use it, and your rights regarding that data when you install and use the App within your Shopify store environment.
             </p>
           </section>
 
@@ -39,93 +36,107 @@ function PrivacyPage() {
               2. Information We Collect via Shopify API
             </h2>
             <p>
-              When you install the App, we automatically access certain types of information from
-              your Shopify store via Shopify's OAuth framework to provide our intelligence services:
+              When you install the App and connect your store, we access the following via Shopify&apos;s OAuth framework:
             </p>
-            <ul className="list-disc pl-6 text-white/70 space-y-2 mt-4">
+            <ul className="list-disc pl-6 text-white/70 space-y-4 mt-4">
               <li>
-                <strong>Store Data:</strong> Merchant name, store email, shop currency, and store
-                domain.
+                <strong>Store and Account Data:</strong> Store name, store email, domain, currency, and Shopify access/refresh tokens required to maintain the connection.
               </li>
               <li>
-                <strong>Store Performance Intelligence:</strong> Historical sales performance
-                patterns, product metadata, and inventory analytics required to generate strategic
-                creative marketing briefs.
+                <strong>Order and Product Data:</strong> A snapshot of your store&apos;s order history, product catalog, and sales performance data, including order sequencing information (e.g., which products were purchased by first-time buyers), used to compute gateway product classifications and generate Campaign Briefs. This snapshot may include data associated with individual customer orders as recorded in your Shopify store.
               </li>
               <li>
-                <strong>Contact Information:</strong> Information provided during account setup or
-                support communications (e.g., email address).
+                <strong>Contact Information:</strong> Information you provide during account setup or support communications.
+              </li>
+              <li>
+                <strong>Advertising Platform Data:</strong> If you connect a Meta Ads account, we access your ad account ID, pixel ID, business ID, and associated access tokens to support campaign brief generation and, where applicable, performance tracking.
               </li>
             </ul>
             <p className="mt-4">
-              We do not collect, store, or process personal identifiable customer data (PII) beyond
-              the aggregated backend metrics required for store analysis.
+              We do not use individually-identifiable customer data from your store to build customer profiles, and we do not sell customer or store data to third parties.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-white/90">3. How We Use Your Information</h2>
-            <p>We process your store data strictly for the following purposes:</p>
+            <p>We process store and order data to:</p>
             <ul className="list-disc pl-6 text-white/70 space-y-2 mt-4">
               <li>
-                To operate, maintain, and render the analytics dashboard inside the Omni Target
-                platform.
+                Generate Campaign Briefs, including gateway product identification, targeting recommendations, and ad budget guidance.
               </li>
               <li>
-                To generate structured, data-backed ad brief and marketing recommendations for your
-                brand.
+                Operate and maintain your account dashboard.
               </li>
               <li>
-                To improve our internal data analysis models using anonymized, aggregated store
-                data.
+                Improve our internal models using aggregated and/or de-identified data across our merchant base.
               </li>
             </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white/90">4. Data Storage and Retention</h2>
+            <p>
+              Your store snapshot, including order and product data, is stored in our systems and refreshed each time your store reconnects or resyncs. This snapshot is retained — and is retrievable by us — from the time of connection until it is overwritten by a subsequent sync or deleted upon uninstallation. It is not deleted immediately after each computation. If your store remains connected without resyncing, the most recent snapshot remains stored on our systems for that period.
+            </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-white/90">
-              4. Data Retention and Shopify Mandatory Webhooks
+              5. Shopify Mandatory Webhooks and Data Erasure
             </h2>
-            <p>
-              We retain your store data only for as long as you keep the Omni Target App installed.
-            </p>
-            <p className="mt-4">
-              The App strictly complies with Shopify’s Mandatory Privacy Webhooks. In accordance
-              with global data protection laws (including GDPR and CCPA), when Shopify issues a data
-              erasure request, we respond automatically within mandatory timelines:
-            </p>
-            <ul className="list-disc pl-6 text-white/70 space-y-2 mt-4">
+            <p>We comply with Shopify&apos;s Mandatory Privacy Webhooks:</p>
+            <ul className="list-disc pl-6 text-white/70 space-y-4 mt-4">
               <li>
-                <strong>Customer Data Erasure (customers/redact):</strong> We do not store
-                individual customer profiles; however, any corresponding cached log identifiers are
-                completely purged.
+                <strong>Shop Data Erasure (shop/redact):</strong> Upon uninstallation, your store snapshot and associated account data are deleted from our production database within 48 hours of receiving the webhook.
               </li>
               <li>
-                <strong>Shop Data Erasure (shop/redact):</strong> Within 48 hours of uninstalling
-                the App, all stored performance data associated with your store is permanently
-                deleted from our databases.
+                <strong>Customer Data Erasure (customers/redact):</strong> Any customer-linked order data contained within your store snapshot is deleted as part of the same erasure process described above. We do not maintain separate individual customer profiles outside this snapshot.
               </li>
               <li>
-                <strong>Customer Data Requests (customers/data_request):</strong> We cooperate fully
-                with Shopify to provide any analytical data points if requested by a merchant.
+                <strong>Customer Data Requests (customers/data_request):</strong> We will inform Shopify and cooperate with any merchant request regarding whether customer-linked order data was processed in generating your Campaign Briefs.
               </li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white/90">5. Security and Third Parties</h2>
+            <h2 className="text-2xl font-semibold text-white/90">6. Third-Party Sharing</h2>
+            <p>We do not sell your data. We share data only with:</p>
+            <ul className="list-disc pl-6 text-white/70 space-y-2 mt-4">
+              <li>
+                Infrastructure providers (database hosting, cloud compute) necessary to operate the App, bound by confidentiality and data processing agreements.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white/90">7. Security</h2>
             <p>
-              We secure your store intelligence using industry-standard encryption protocols. We do
-              not sell your data. Data is shared only with secure cloud infrastructure providers
-              (e.g., hosting) necessary to run the App, all bound by strict data processing
-              confidentiality agreements.
+              We apply access controls and encryption provided by our infrastructure providers to protect stored data, including store access tokens.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white/90">6. Contact Us</h2>
+            <h2 className="text-2xl font-semibold text-white/90">8. Your Rights</h2>
             <p>
-              For any privacy or data access questions, contact us at{" "}
+              Depending on your jurisdiction, you (or your customers, via you as data controller) may have rights to access, correct, or request deletion of data processed by the App. Requests can be made via Shopify&apos;s data request mechanisms or by contacting us directly at{" "}
+              <a href="mailto:support@omnitarget.co" className="underline hover:text-white">
+                support@omnitarget.co
+              </a>
+              .
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white/90">9. Changes to This Policy</h2>
+            <p>
+              We may update this Privacy Policy from time to time. Material changes will be communicated via email/in-app notice.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-white/90">10. Contact Us</h2>
+            <p>
+              For privacy or data access questions, contact us at{" "}
               <a href="mailto:support@omnitarget.co" className="underline hover:text-white">
                 support@omnitarget.co
               </a>
