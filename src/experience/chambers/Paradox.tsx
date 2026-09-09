@@ -36,7 +36,17 @@ function ProductCard({ data, gold, delay }: { data: ParadoxCard; gold?: boolean;
           {data.rows.map(([k, v]) => (
             <div className="lx-row" key={k}>
               <dt>{k}</dt>
-              <dd style={{ fontWeight: 600, color: k.includes("ROAS") ? (gold ? "#ef4444" : "#10b981") : undefined }}>
+              <dd
+                style={{
+                  fontWeight: 600,
+                  color:
+                    k.includes("conversion") || k.includes("fit") || k.includes("ROAS") || k.includes("return")
+                      ? gold
+                        ? "#ef4444"
+                        : "#10b981"
+                      : undefined,
+                }}
+              >
                 {v}
               </dd>
             </div>

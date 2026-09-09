@@ -142,7 +142,7 @@ export function TopBar() {
           </button>
           <a className="lx-cta" href={APP_URL}>
             <span className="hidden sm:inline">{COPY.hero.ctaPrimary}</span>
-            <span className="sm:hidden">Start Audit</span>
+            <span className="sm:hidden">Scan Free</span>
           </a>
         </div>
       </nav>

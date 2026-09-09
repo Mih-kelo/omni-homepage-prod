@@ -48,7 +48,7 @@ export function Composition() {
                   gap: 7,
                 }}
               >
-                <span>📦</span> The 1 Product Strangers Actually Buy
+                <span>📦</span> The 1 Gateway Product Strangers Actually Buy
               </span>
               <span
                 style={{
@@ -176,12 +176,12 @@ export function Composition() {
                   <div className="rounded-lg overflow-hidden border border-slate-200/60 dark:border-white/10 bg-slate-100 dark:bg-black/30 relative w-full aspect-square max-h-[340px]">
                     <img
                       src={adCreativeTee}
-                      alt="Winning Product - Everyday Cotton Tee"
+                      alt="Gateway Product - Everyday Cotton Tee"
                       className="w-full h-full object-cover object-top"
                       loading="eager"
                     />
                     <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/75 text-white font-mono text-[9px] uppercase tracking-wider backdrop-blur-xs flex items-center gap-1">
-                      <span>📦</span> #1 Winning Product
+                      <span>📦</span> #1 Gateway Product
                     </div>
                   </div>
 

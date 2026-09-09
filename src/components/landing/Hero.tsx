@@ -36,13 +36,13 @@ export function Hero() {
 
           <p className="mt-7 max-w-[520px] text-[17px] leading-[1.6] text-white/[0.60]">
             Omni Target turns your real Shopify sales data into a launch-ready Meta Ads brief in 3 minutes —
-            pinpointing your winning gateway product, 3 custom video hooks, exact campaign settings, and a calibrated testing budget.
+            pinpointing your #1 gateway product, 3 custom video hooks, exact campaign settings, and a calibrated testing budget.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-5">
             <a href="https://app.omnitarget.co/login" className="cta-premium group">
               <span className="cta-premium-inner">
-                <span className="cta-premium-label">Start Free Store Audit</span>
+                <span className="cta-premium-label">Scan Your Store Free</span>
                 <span aria-hidden className="cta-premium-arrow">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path

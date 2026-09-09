@@ -23,21 +23,21 @@ export interface BriefRow {
 }
 
 export const COPY = {
-  badge: "Pre-Spend Intelligence · Find What Strangers Buy",
+  badge: "Pre-Spend Intelligence · Identify Your Gateway Product",
 
   hero: {
     titleA: "Stop wasting money on Meta",
     titleB: "ads that don't get sales.",
     body: "",
-    ctaPrimary: "Find Your Winning Product",
+    ctaPrimary: "Scan Your Store Free",
     ctaSecondary: "See how it works →",
-    ctaNote: "Official Shopify Partner · 30s Read-Only Setup · No credit card required",
+    ctaNote: "Official Shopify App · 30-Sec Read-Only Scan · 1 Free Brief on Install",
     shopifyBadge: "Install on Shopify App Store",
   },
 
   howItWorks: {
     eyebrow: "How it works",
-    titleA: "From store to winning ad",
+    titleA: "From store data to launch-ready ad",
     titleB: "in three simple steps.",
     steps: [
       {
@@ -53,7 +53,7 @@ export const COPY = {
       {
         n: "03",
         t: "Copy-paste your ad and launch",
-        d: "Get your winning product, 3 scroll-stopping video hooks, and exact daily budget. Ready to run.",
+        d: "Get your gateway product, 3 scroll-stopping video hooks, and exact daily budget. Ready to run.",
       },
     ],
   },
@@ -67,23 +67,23 @@ export const COPY = {
       name: "Heavyweight Fleece Hoodie",
       rows: [
         ["Who buys it", "88% Repeat Customers"],
-        ["Ad return", "0.6x (Loses money)"],
-        ["Customer type", "Returning buyers"],
+        ["Stranger conversion", "Low (High drop-off)"],
+        ["Acquisition fit", "Poor (Loses ad spend)"],
       ] as const,
       verdict: "❌ Strangers on Meta won't buy this on first click",
     },
     gateway: {
-      label: "Winning Product",
+      label: "Gateway Product",
       name: "Everyday Cotton Tee",
       rows: [
         ["Who buys it", "72% First-Time Buyers"],
-        ["Ad return", "2.4x (Makes money)"],
-        ["Customer type", "Brand-new strangers"],
+        ["Stranger conversion", "High (Instant trust)"],
+        ["Acquisition fit", "Maximum (Profitable cold traffic)"],
       ] as const,
       verdict: "✅ The 1 item strangers trust enough to buy immediately",
     },
     closing:
-      "Meta finds the audience. Omni Target finds the one product they'll actually buy.",
+      "Meta finds the audience. Omni Target finds the one gateway product they'll actually buy.",
   },
 
   range: {
@@ -106,7 +106,7 @@ export const COPY = {
     titleB: "Nothing to guess.",
     body: "No staring at a blank screen wondering what to write, no stressing over what to film, and no hours of spreadsheet digging. You get the 1 product new buyers actually want, high-converting ad copy, 3 video hook scripts ready to shoot, and your exact daily budget.",
     items: [
-      "The 1 product strangers actually buy",
+      "The 1 gateway product strangers actually buy",
       "Ready-to-run ad copy & headline",
       "3 scroll-stopping video hooks",
     ],
@@ -176,11 +176,11 @@ export const COPY = {
       "DTC Store Owners",
       "Growth Teams & Agencies",
       "Stores with Multiple Products",
-      "Spending $300–$50k/mo on Meta",
+      "Spending $500–$25k/mo on Meta",
       "Tired of Guessing What Converts",
     ],
     disclaimer:
-      "For store owners tired of burning budget on products that don't convert, and agency teams who want to deliver winning Meta briefs without 20 hours of spreadsheet digging.",
+      "For store owners tired of burning budget on products that don't convert, and growth teams who want to deliver high-converting Meta briefs without 20 hours of spreadsheet digging.",
   },
 
   pricing: {
@@ -196,7 +196,7 @@ export const COPY = {
         desc: "",
         features: [
           "1 free ad brief on install",
-          "Find your top-converting product",
+          "Identify your #1 gateway product",
           "3 ready-to-use ad angles & hooks",
           "Step-by-step Meta setup guide",
         ],
@@ -211,7 +211,7 @@ export const COPY = {
         desc: "",
         features: [
           "3 ad briefs ($3.00 each)",
-          "Test your top 3 products",
+          "Test your top 3 gateway products",
           "3 custom video hooks per item",
           "Credits valid for 12 months",
         ],

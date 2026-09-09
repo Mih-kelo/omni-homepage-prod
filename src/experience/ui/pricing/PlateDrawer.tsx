@@ -157,6 +157,31 @@ export function PlateDrawer() {
           );
         })}
       </div>
+
+      {/* Agency & Multi-Store Volume Callout */}
+      <p
+        className="lx-mono"
+        style={{
+          fontSize: 12,
+          color: "var(--lx-ink-soft)",
+          margin: "18px 0 0",
+          textAlign: "center",
+          letterSpacing: "0.02em",
+        }}
+      >
+        Managing multiple stores or spending $20k+/mo?{" "}
+        <a
+          href="mailto:support@omnitarget.co?subject=Agency%20Volume%20Inquiry"
+          style={{
+            color: "var(--lx-accent)",
+            textDecoration: "underline",
+            textUnderlineOffset: "3px",
+            fontWeight: 600,
+          }}
+        >
+          Contact us for agency volume packs & team seats
+        </a>
+      </p>
     </div>
   );
 }

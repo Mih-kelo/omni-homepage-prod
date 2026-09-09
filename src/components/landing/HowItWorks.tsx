@@ -12,7 +12,7 @@ const steps = [
   {
     n: "03",
     t: "Get your launch-ready Meta brief",
-    d: "Winning gateway product, audience targeting, 3 scroll-stopping video hooks, exact Meta campaign settings, and dynamic daily testing budget — exported as a branded PDF.",
+    d: "#1 Gateway product, audience targeting, 3 scroll-stopping video hooks, exact Meta campaign settings, and dynamic daily testing budget — exported as a branded PDF.",
   },
 ];
 

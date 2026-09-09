@@ -15,7 +15,7 @@ export function Colophon() {
             <span className="lx-colophon-word">OMNI TARGET</span>
           </div>
           <p className="lx-colophon-desc">
-            Pre-spend intelligence for Shopify merchants. Discover the exact winning product
+            Pre-spend intelligence for Shopify merchants. Discover your exact gateway product
             cold strangers buy on Meta before risking your ad budget.
           </p>
 
@@ -36,7 +36,7 @@ export function Colophon() {
           <ul className="lx-colophon-links">
             <li>
               <a href={APP_URL} className="lx-colophon-link">
-                Start Free Audit
+                Scan Store Free
               </a>
             </li>
             <li>
