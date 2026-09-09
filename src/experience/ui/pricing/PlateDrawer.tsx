@@ -171,7 +171,7 @@ export function PlateDrawer() {
       >
         Managing multiple stores or spending $20k+/mo?{" "}
         <a
-          href="mailto:support@omnitarget.co?subject=Agency%20Volume%20Inquiry"
+          href="mailto:hello@omnitarget.co?subject=Agency%20Volume%20Inquiry"
           style={{
             color: "var(--lx-accent)",
             textDecoration: "underline",
