@@ -184,9 +184,9 @@ export const COPY = {
   },
 
   pricing: {
-    eyebrow: "No Subscriptions",
-    titleA: "Buy credits when you need them.",
-    titleB: "Never a monthly subscription.",
+    eyebrow: "Start Free",
+    titleA: "Get your first brief free.",
+    titleB: "Upgrade only when you're ready.",
     plans: [
       {
         name: "Free Plan",
