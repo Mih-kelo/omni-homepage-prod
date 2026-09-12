@@ -6,7 +6,7 @@
  * chambers stage this copy cinematically. No new narrative copy is invented.
  */
 
-export const APP_URL = "https://app.omnitarget.co/login";
+export const APP_URL = "https://app.omnitarget.co/signup";
 export const SHOPIFY_APP_URL = "https://apps.shopify.com/omni-target";
 
 export interface ParadoxCard {

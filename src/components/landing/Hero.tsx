@@ -40,7 +40,7 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-5">
-            <a href="https://app.omnitarget.co/login" className="cta-premium group">
+            <a href="https://app.omnitarget.co/signup" className="cta-premium group">
               <span className="cta-premium-inner">
                 <span className="cta-premium-label">Scan Your Store Free</span>
                 <span aria-hidden className="cta-premium-arrow">
