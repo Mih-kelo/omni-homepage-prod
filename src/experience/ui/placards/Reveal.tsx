@@ -10,6 +10,7 @@ interface RevealProps {
   delay?: number;
   y?: number;
   className?: string;
+  forceView?: boolean;
 }
 
 /**
@@ -21,6 +22,7 @@ interface RevealProps {
  */
 export function Reveal(props: RevealProps) {
   const mode = useMode((s) => s.mode);
+  if (props.forceView) return <ViewReveal {...props} />;
   return mode === "cinematic" ? <ConductedReveal {...props} /> : <ViewReveal {...props} />;
 }
 
@@ -74,7 +76,7 @@ function ViewReveal({ children, delay = 0, y = 26, className }: RevealProps) {
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: true, amount: 0 }}
       transition={{ duration: MASKLINE.duration, ease: MASKLINE.ease, delay }}
     >
       {children}

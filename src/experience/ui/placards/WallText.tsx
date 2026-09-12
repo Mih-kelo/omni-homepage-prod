@@ -14,6 +14,8 @@ interface WallTextProps {
   small?: boolean;
   as?: "h1" | "h2" | "h3" | "p";
   className?: string;
+  forceMask?: boolean;
+  style?: React.CSSProperties;
 }
 
 /**
@@ -26,11 +28,12 @@ interface WallTextProps {
  */
 export function WallText(props: WallTextProps) {
   const mode = useMode((s) => s.mode);
+  if (props.forceMask) return <MaskWall {...props} />;
   return mode === "cinematic" ? <WrittenWall {...props} /> : <MaskWall {...props} />;
 }
 
 /** the thread writes: per-character, scrubbed by the story path */
-function WrittenWall({ lines, small = false, as: Tag = "h2", className }: WallTextProps) {
+function WrittenWall({ lines, small = false, as: Tag = "h2", className, style }: WallTextProps) {
   const T = Tag as "h2";
   const rootRef = useRef<HTMLHeadingElement>(null);
 
@@ -56,6 +59,7 @@ function WrittenWall({ lines, small = false, as: Tag = "h2", className }: WallTe
     <T
       ref={rootRef}
       className={className ? `${baseClass} ${className}` : baseClass}
+      style={style}
       aria-label={lines.map((l) => l.text).join(" ")}
     >
 
@@ -85,17 +89,17 @@ function WrittenWall({ lines, small = false, as: Tag = "h2", className }: WallTe
 }
 
 /** staggered mask-lift — the boot/SSR and still-preference voice */
-function MaskWall({ lines, small = false, as: Tag = "h2", className }: WallTextProps) {
+function MaskWall({ lines, small = false, as: Tag = "h2", className, style }: WallTextProps) {
   const baseClass = small ? "lx-wall lx-wall-sm" : "lx-wall";
   return (
-    <Tag className={className ? `${baseClass} ${className}` : baseClass}>
+    <Tag className={className ? `${baseClass} ${className}` : baseClass} style={style}>
       {lines.map((line, i) => (
 
         <span className="lx-maskline" key={i}>
           <motion.span
             initial={MASKLINE.hidden}
             whileInView={MASKLINE.shown}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{
               duration: MASKLINE.duration,
               ease: MASKLINE.ease,

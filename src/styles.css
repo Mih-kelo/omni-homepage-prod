@@ -831,6 +831,9 @@ body:has(.lumen) { background-color: #fafaf8; }
   margin: 0;
   text-shadow: 0 0 16px var(--lx-bg);
 }
+.lx-lede.mx-auto {
+  margin-inline: auto;
+}
 .lx-eyebrow-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .lx-badge {
   display: inline-block;

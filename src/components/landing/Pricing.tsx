@@ -19,7 +19,7 @@ const plans = [
     period: "one-time charge",
     desc: "",
     features: [
-      "3 ad briefs ($3.00 each)",
+      "3 full ad briefs",
       "Test your top 3 products",
       "3 custom video hooks per item",
       "Credits valid for 12 months",
@@ -33,9 +33,9 @@ const plans = [
     period: "one-time charge",
     desc: "",
     features: [
-      "10 ad briefs ($2.50 each)",
+      "10 full ad briefs",
+      "Save 17% on credits",
       "Perfect for new collection drops",
-      "Save 17% vs Starter Pack",
       "Everything in Starter Pack",
     ],
     cta: "Get Growth Pack",
@@ -47,9 +47,9 @@ const plans = [
     period: "one-time charge",
     desc: "",
     features: [
-      "30 ad briefs ($1.97 each)",
+      "30 full ad briefs",
+      "Save 34% on credits (Best value)",
       "Cover your entire store catalog",
-      "Best value (save 34%)",
       "Everything in Growth Pack",
     ],
     cta: "Get Scale Pack",
@@ -73,7 +73,7 @@ export function Pricing() {
           >
             Flexible credit packs.
             <br />
-            <span className="text-primary-mid">No recurring subscriptions.</span>
+            <span className="text-primary-mid">Launch-ready ad briefs on demand.</span>
           </h2>
         </div>
 

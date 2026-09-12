@@ -80,26 +80,6 @@ export function PlateDrawer() {
     return "one-time charge";
   };
 
-  const renderFeatureText = (text: string, usdPrice: number, count?: number) => {
-    const match = text.match(/\(\$([0-9.]+) each\)/);
-    if (!match) return text;
-    if (selectedCurrency === "USD") return text;
-
-    if (selectedCurrency === "NGN") {
-      const unitLocal = count
-        ? Math.round((usdPrice * rate) / count / 100) * 100
-        : Math.round((parseFloat(match[1]) * rate) / 100) * 100;
-      return text.replace(/\(\$[0-9.]+ each\)/, `(₦${unitLocal.toLocaleString("en-US")} each)`);
-    }
-
-    // For EUR / GBP, derive unit price directly from rounded package total to eliminate rounding mismatches
-    const roundedTotal = Math.round(usdPrice * rate);
-    const unitPrice = count
-      ? (roundedTotal / count).toFixed(2)
-      : (parseFloat(match[1]) * rate).toFixed(2);
-    return text.replace(/\(\$[0-9.]+ each\)/, `(${cur.symbol}${unitPrice} each)`);
-  };
-
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
       {/* Currency Switcher */}
@@ -153,7 +133,7 @@ export function PlateDrawer() {
               data-featured={p.featured}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: restY }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.05 }}
               whileHover={{ y: restY - 5 }}
               transition={{ ...SPRING.soft, delay: i * 0.07 }}
             >
@@ -169,7 +149,7 @@ export function PlateDrawer() {
               {p.features.length > 0 && (
                 <ul className="lx-plate-features">
                   {p.features.map((f) => (
-                    <li key={f}>{renderFeatureText(f, p.usdPrice, p.count)}</li>
+                    <li key={f}>{f}</li>
                   ))}
                 </ul>
               )}

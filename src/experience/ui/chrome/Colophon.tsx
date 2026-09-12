@@ -50,17 +50,17 @@ export function Colophon() {
               </a>
             </li>
             <li>
-              <a href="#chamber-listening" className="lx-colophon-link">
+              <a href="/#how-it-works" className="lx-colophon-link">
                 How It Works
               </a>
             </li>
             <li>
-              <a href="#chamber-paradox" className="lx-colophon-link">
+              <a href="/#problem" className="lx-colophon-link">
                 Cold Traffic Paradox
               </a>
             </li>
             <li>
-              <a href="#chamber-invitation" className="lx-colophon-link">
+              <a href="/pricing" className="lx-colophon-link">
                 Credit Packs & Pricing
               </a>
             </li>
