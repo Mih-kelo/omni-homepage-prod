@@ -13,15 +13,42 @@ import "./nav.css";
  * Visible from mount (unlike the panel, it does not wait for presence).
  */
 
-/** the chambers, labelled with verbatim COPY eyebrows where they exist */
-const SECTIONS: ReadonlyArray<{ id: string; label: string }> = [
-  { id: "threshold", label: "Overview" },
-  { id: "paradox", label: COPY.paradox.eyebrow },
-  { id: "listening", label: COPY.howItWorks.eyebrow },
-  { id: "composition", label: COPY.whatYouGet.eyebrow },
-  { id: "observatory", label: COPY.whoItsFor.eyebrow },
-  { id: "invitation", label: COPY.pricing.eyebrow },
+/** the chambers, labelled with verbatim COPY eyebrows and human-readable URL hashes */
+export const SECTIONS: ReadonlyArray<{ id: string; label: string; hash: string }> = [
+  { id: "threshold", label: "Overview", hash: "overview" },
+  { id: "paradox", label: COPY.paradox.eyebrow, hash: "problem" },
+  { id: "listening", label: COPY.howItWorks.eyebrow, hash: "how-it-works" },
+  { id: "composition", label: COPY.whatYouGet.eyebrow, hash: "sample-brief" },
+  { id: "observatory", label: COPY.whoItsFor.eyebrow, hash: "proof" },
+  { id: "invitation", label: COPY.pricing.eyebrow, hash: "pricing" },
 ];
+
+export function resolveTargetElement(hashOrId: string): HTMLElement | null {
+  if (!hashOrId) return null;
+  const clean = hashOrId.replace(/^#/, "").replace(/^chamber-/, "").toLowerCase();
+
+  const map: Record<string, string> = {
+    pricing: "chamber-invitation",
+    invitation: "chamber-invitation",
+    "how-it-works": "chamber-listening",
+    how: "chamber-listening",
+    listening: "chamber-listening",
+    composition: "chamber-composition",
+    "what-you-get": "chamber-composition",
+    "sample-brief": "chamber-composition",
+    brief: "chamber-composition",
+    observatory: "chamber-observatory",
+    proof: "chamber-observatory",
+    "who-its-for": "chamber-observatory",
+    paradox: "chamber-paradox",
+    problem: "chamber-paradox",
+    overview: "chamber-threshold",
+    threshold: "chamber-threshold",
+  };
+
+  const targetId = map[clean] || `chamber-${clean}`;
+  return document.getElementById(targetId) || document.getElementById(clean);
+}
 
 function prefersReducedMotion(): boolean {
   return (
@@ -29,11 +56,29 @@ function prefersReducedMotion(): boolean {
   );
 }
 
+export function scrollToSection(hashOrId: string, smooth = true): boolean {
+  if (typeof window === "undefined") return false;
+  if (!hashOrId || hashOrId === "#" || hashOrId === "#overview" || hashOrId === "overview") {
+    window.scrollTo({ top: 0, behavior: smooth && !prefersReducedMotion() ? "smooth" : "auto" });
+    return true;
+  }
+  const el = resolveTargetElement(hashOrId);
+  if (el) {
+    el.scrollIntoView({
+      behavior: smooth && !prefersReducedMotion() ? "smooth" : "auto",
+      block: "start",
+    });
+    return true;
+  }
+  return false;
+}
+
 export function TopBar() {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const indexRef = useRef<HTMLDivElement>(null);
+  const isNavigatingRef = useRef(false);
 
   const close = useCallback((refocus: boolean) => {
     setOpen(false);
@@ -86,6 +131,76 @@ export function TopBar() {
     };
   }, [open]);
 
+  // Deep link support on initial page load / refresh
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const rawHash = window.location.hash;
+    if (!rawHash || rawHash === "#" || rawHash === "#overview") return;
+
+    // Retry at staggered intervals so fonts, GSAP, and layout have settled
+    const t1 = setTimeout(() => scrollToSection(rawHash, false), 80);
+    const t2 = setTimeout(() => scrollToSection(rawHash, true), 350);
+    const t3 = setTimeout(() => scrollToSection(rawHash, true), 800);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
+
+  // Browser Back / Forward buttons & direct hashchange support
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const onPop = () => {
+      if (isNavigatingRef.current) return;
+      const hash = window.location.hash;
+      if (!hash || hash === "#" || hash === "#overview") {
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
+      } else {
+        scrollToSection(hash, true);
+      }
+    };
+
+    window.addEventListener("popstate", onPop);
+    window.addEventListener("hashchange", onPop);
+    return () => {
+      window.removeEventListener("popstate", onPop);
+      window.removeEventListener("hashchange", onPop);
+    };
+  }, []);
+
+  // Scroll-spy: keep URL hash synchronized with currently visible section
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const unsub = useJourney.subscribe((state) => {
+      if (isNavigatingRef.current) return;
+      const idx = state.chamberIndex;
+      const sec = SECTIONS[idx];
+      if (!sec) return;
+
+      const targetHash = idx === 0 ? "" : `#${sec.hash}`;
+      const currentHash = window.location.hash;
+
+      if (targetHash === "") {
+        if (currentHash !== "" && currentHash !== "#") {
+          window.history.replaceState(null, "", window.location.pathname);
+        }
+      } else if (currentHash !== targetHash) {
+        // Only replace if not an alias already pointing to this section
+        const currentTarget = resolveTargetElement(currentHash);
+        const newTarget = resolveTargetElement(targetHash);
+        if (currentTarget !== newTarget) {
+          window.history.replaceState(null, "", targetHash);
+        }
+      }
+    });
+
+    return () => unsub();
+  }, []);
+
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape" && open) {
       e.stopPropagation();
@@ -93,19 +208,30 @@ export function TopBar() {
     }
   };
 
-  const goTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const goTo = (e: React.MouseEvent<HTMLAnchorElement>, hashName: string) => {
     e.preventDefault();
     close(true);
-    document.getElementById(`chamber-${id}`)?.scrollIntoView({
-      behavior: prefersReducedMotion() ? "auto" : "smooth",
-      block: "start",
-    });
+    isNavigatingRef.current = true;
+    scrollToSection(hashName, true);
+    try {
+      window.history.pushState(null, "", `#${hashName}`);
+    } catch (_) {}
+    setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 800);
   };
 
   const toTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setOpen(false);
+    isNavigatingRef.current = true;
     window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
+    try {
+      window.history.pushState(null, "", window.location.pathname);
+    } catch (_) {}
+    setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 800);
   };
 
   return (
@@ -119,7 +245,7 @@ export function TopBar() {
     >
       <nav className="lx-topbar" aria-label="Primary">
         <a
-          href="#chamber-threshold"
+          href="#overview"
           className="lx-topbar-word"
           aria-label="Omni Target — back to the top"
           onClick={toTop}
@@ -156,7 +282,7 @@ function SectionIndex({
   onGo,
 }: {
   ref: React.Ref<HTMLDivElement>;
-  onGo: (e: React.MouseEvent<HTMLAnchorElement>, id: string) => void;
+  onGo: (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => void;
 }) {
   const current = useJourney((s) => s.chamberIndex);
   return (
@@ -174,9 +300,9 @@ function SectionIndex({
       {SECTIONS.map((s, i) => (
         <a
           key={s.id}
-          href={`#chamber-${s.id}`}
+          href={`#${s.hash}`}
           aria-current={current === i || undefined}
-          onClick={(e) => onGo(e, s.id)}
+          onClick={(e) => onGo(e, s.hash)}
         >
           <span>{s.label}</span>
           <span>{String(i + 1).padStart(2, "0")}</span>

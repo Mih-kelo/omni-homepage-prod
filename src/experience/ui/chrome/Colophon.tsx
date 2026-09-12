@@ -88,6 +88,16 @@ export function Colophon() {
               </a>
             </li>
             <li>
+              <a
+                href={SHOPIFY_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="lx-colophon-link"
+              >
+                Official Shopify Partner ↗
+              </a>
+            </li>
+            <li>
               <span className="lx-colophon-link-muted">
                 100% Read-Only Safety
               </span>
@@ -104,7 +114,7 @@ export function Colophon() {
               <span className="lx-colophon-guarantee-title">Zero Risk to Store</span>
             </div>
             <p className="lx-colophon-guarantee-text">
-              1-click install with strictly read-only API access. We never touch your inventory, alter theme code, or store customer payment details.
+              Verified Shopify App with read_orders and read_products scopes only. Billed natively through Shopify's Billing API. We never touch payment credentials or edit theme files.
             </p>
           </div>
         </div>

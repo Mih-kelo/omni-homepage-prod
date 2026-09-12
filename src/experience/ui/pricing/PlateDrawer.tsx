@@ -80,18 +80,24 @@ export function PlateDrawer() {
     return "one-time charge";
   };
 
-  const renderFeatureText = (text: string) => {
+  const renderFeatureText = (text: string, usdPrice: number, count?: number) => {
     const match = text.match(/\(\$([0-9.]+) each\)/);
     if (!match) return text;
     if (selectedCurrency === "USD") return text;
 
-    const unitUsd = parseFloat(match[1]);
-    const local = unitUsd * rate;
     if (selectedCurrency === "NGN") {
-      const rounded = Math.round(local / 100) * 100;
-      return text.replace(/\(\$[0-9.]+ each\)/, `(₦${rounded.toLocaleString("en-US")} each)`);
+      const unitLocal = count
+        ? Math.round((usdPrice * rate) / count / 100) * 100
+        : Math.round((parseFloat(match[1]) * rate) / 100) * 100;
+      return text.replace(/\(\$[0-9.]+ each\)/, `(₦${unitLocal.toLocaleString("en-US")} each)`);
     }
-    return text.replace(/\(\$[0-9.]+ each\)/, `(${cur.symbol}${local.toFixed(2)} each)`);
+
+    // For EUR / GBP, derive unit price directly from rounded package total to eliminate rounding mismatches
+    const roundedTotal = Math.round(usdPrice * rate);
+    const unitPrice = count
+      ? (roundedTotal / count).toFixed(2)
+      : (parseFloat(match[1]) * rate).toFixed(2);
+    return text.replace(/\(\$[0-9.]+ each\)/, `(${cur.symbol}${unitPrice} each)`);
   };
 
   return (
@@ -115,12 +121,29 @@ export function PlateDrawer() {
         })}
       </div>
 
+      {/* Currency & Billing Transparency Disclaimer */}
+      {selectedCurrency !== "USD" && (
+        <span
+          className="lx-mono"
+          style={{
+            fontSize: "11px",
+            color: "var(--lx-ink-faint)",
+            margin: "8px 0 2px",
+            textAlign: "center",
+            letterSpacing: "0.04em",
+          }}
+        >
+          *Display estimate only. Purchases are billed in USD ($) via your official Shopify store account.
+        </span>
+      )}
+
       {/* Pricing Plates Grid */}
       <div className="lx-plates" role="list">
         {COPY.pricing.plans.map((p, i) => {
           const restY = p.featured ? -8 : 0;
           const displayPrice = formatPriceDisplay(p.usdPrice);
           const displayPeriod = formatPeriodDisplay(p.usdPrice);
+          const planUrl = `${APP_URL}?plan=${p.slug || "free"}`;
 
           return (
             <motion.article
@@ -146,12 +169,12 @@ export function PlateDrawer() {
               {p.features.length > 0 && (
                 <ul className="lx-plate-features">
                   {p.features.map((f) => (
-                    <li key={f}>{renderFeatureText(f)}</li>
+                    <li key={f}>{renderFeatureText(f, p.usdPrice, p.count)}</li>
                   ))}
                 </ul>
               )}
               <div className="lx-plate-cta">
-                <a href={APP_URL}>{p.cta}</a>
+                <a href={planUrl}>{p.cta}</a>
               </div>
             </motion.article>
           );

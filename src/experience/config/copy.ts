@@ -190,6 +190,8 @@ export const COPY = {
     plans: [
       {
         name: "Free Plan",
+        slug: "free",
+        count: 1,
         price: "Free",
         usdPrice: 0,
         period: "",
@@ -205,6 +207,8 @@ export const COPY = {
       },
       {
         name: "Starter Pack",
+        slug: "starter",
+        count: 3,
         price: "$9",
         usdPrice: 9,
         period: "one-time charge",
@@ -220,6 +224,8 @@ export const COPY = {
       },
       {
         name: "Growth Pack",
+        slug: "growth",
+        count: 10,
         price: "$25",
         usdPrice: 25,
         period: "one-time charge",
@@ -235,6 +241,8 @@ export const COPY = {
       },
       {
         name: "Scale Pack",
+        slug: "scale",
+        count: 30,
         price: "$59",
         usdPrice: 59,
         period: "one-time charge",
