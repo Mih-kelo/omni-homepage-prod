@@ -26,8 +26,8 @@ export const COPY = {
   badge: "Pre-Spend Intelligence · Identify Your Gateway Product",
 
   hero: {
-    titleA: "Stop wasting money on Meta",
-    titleB: "ads that don't get sales.",
+    titleA: "Know what to advertise",
+    titleB: "before you spend on Meta.",
     body: "",
     ctaPrimary: "Scan Your Store Free",
     ctaSecondary: "See how it works →",
