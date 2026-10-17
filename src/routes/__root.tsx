@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Pre-Spend Intelligence for Shopify Merchants. Stop guessing what converts on Meta. Omni Target turns your real Shopify store data into an agency-grade Meta Ads brief in three minutes.",
+          "Omni Target provides Pre-Spend Intelligence for Shopify Merchants. Know what to advertise before you spend on Meta. Turn your Shopify store data into agency-grade Meta ad briefs.",
       },
       { name: "author", content: "Omni Target" },
       {
@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Pre-Spend Intelligence for Shopify Merchants. Stop guessing what converts on Meta. Omni Target turns your real Shopify store data into an agency-grade Meta Ads brief in three minutes.",
+          "Omni Target provides Pre-Spend Intelligence for Shopify Merchants. Know what to advertise before you spend on Meta. Turn your Shopify store data into agency-grade Meta ad briefs.",
       },
       { property: "og:type", content: "website" },
       {
@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Pre-Spend Intelligence for Shopify Merchants. Stop guessing what converts on Meta. Omni Target turns your real Shopify store data into an agency-grade Meta Ads brief in three minutes.",
+          "Omni Target provides Pre-Spend Intelligence for Shopify Merchants. Know what to advertise before you spend on Meta. Turn your Shopify store data into agency-grade Meta ad briefs.",
       },
       {
         name: "twitter:image",
@@ -112,6 +112,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
+      { rel: "canonical", href: "https://www.omnitarget.co/" },
       {
         rel: "icon",
         type: "image/png",
@@ -151,6 +152,51 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-MTXLCEKC54');`,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://www.omnitarget.co/#organization",
+                  "name": "Omni Target",
+                  "alternateName": ["OmniTarget", "Omni Target Shopify App"],
+                  "url": "https://www.omnitarget.co",
+                  "logo": "https://res.cloudinary.com/denwiqjid/image/upload/v1779707457/omni_target_logo_ae2epf.png",
+                  "description":
+                    "Pre-Spend Intelligence for Shopify Merchants. Know what to advertise before you spend on Meta.",
+                  "sameAs": ["https://apps.shopify.com/omni-target"],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://www.omnitarget.co/#website",
+                  "url": "https://www.omnitarget.co",
+                  "name": "Omni Target",
+                  "publisher": {
+                    "@id": "https://www.omnitarget.co/#organization",
+                  },
+                },
+                {
+                  "@type": "SoftwareApplication",
+                  "@id": "https://www.omnitarget.co/#software",
+                  "name": "Omni Target",
+                  "applicationCategory": "BusinessApplication",
+                  "operatingSystem": "Shopify",
+                  "description":
+                    "Pre-Spend Intelligence for Shopify Merchants. Know what to advertise before you spend on Meta.",
+                  "url": "https://www.omnitarget.co",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD",
+                  },
+                },
+              ],
+            }),
           }}
         />
         <HeadContent />
